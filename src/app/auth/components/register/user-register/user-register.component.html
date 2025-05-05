@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="username">Nombre de usuario</label>
+    <input type="text" class="form-control" id="username" formControlName="username" required>
+    <div *ngIf="submitted && registerForm.controls['username'].errors" class="text-danger">
+      <div *ngIf="registerForm.controls['username'].errors['required']">El nombre de usuario es obligatorio.</div>
+      <div *ngIf="registerForm.controls['username'].errors['minlength']">El nombre de usuario debe tener al menos 4 caracteres.</div>
+      <div *ngIf="registerForm.controls['username'].errors['maxlength']">El nombre de usuario no puede exceder los 50 caracteres.</div>
+    </div>
+  </div>
+</form>
+
+
+</body>
+</html>

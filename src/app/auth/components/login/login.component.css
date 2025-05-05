@@ -1,0 +1,128 @@
+/* Fondo con degradado */
+.background {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* Tarjeta estilo glassmorphism */
+.login-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  color: #fff;
+  /**border: 1px solid #fff;**/
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.title-oval {
+
+  padding: 0.5rem 1.5rem;
+  border-radius: 900px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+  border: 1px solid #fff;
+
+}
+
+.title-oval h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+
+h4 {
+  text-align: center;
+
+}
+
+/* Formularios */
+.form-group {
+  margin-bottom: 1.2rem;
+  padding: 0 0.30rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 0.10rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  outline: none;
+  border: 1px solid #fff;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #6c63ff;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #5a54e8;
+}
+
+.error-message {
+  background-color: rgba(255, 0, 0, 0.2);
+  padding: 0.5rem;
+  border-radius: 8px;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.form-links {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #fff;
+  text-align: center;
+}
+
+.form-links a enlace{
+  color: #fff;
+  text-decoration: underline;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.form-links a:hover {
+  color: #d1c4e9;
+}
+
+.form-links span {
+  color: #ccc;
+}
