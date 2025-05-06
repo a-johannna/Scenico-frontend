@@ -1,0 +1,148 @@
+/* Fondo general */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: purple;
+
+}
+
+.logo-header img {
+  width: 120px; /* ajusta según tamaño deseado */
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+
+.container {
+  background: whitesmoke;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  color: #fff;
+}
+
+/* Contenedor principal del formulario */
+.card-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+/* Título dentro de óvalo */
+.title-oval {
+  display: inline-block;
+  padding: 0.5rem 2rem;
+  border: 1px solid white;
+  border-radius: 999px;
+  margin: 0 auto 1.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* Subtítulo */
+.subtitle {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: purple;
+}
+
+/* Etiquetas e inputs */
+.form-group {
+  margin-bottom: 1.2rem;
+  padding: 0 1rem;
+  color: purple;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  /*border: none; */
+  border: 1px solid purple;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: plum;
+  outline: none;
+  box-sizing: border-box;
+}
+
+
+
+/* Botón principal */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  background: linear-gradient(to right, #6a5acd, #7b68ee);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(to right, #7b68ee, #6a5acd);
+}
+
+/* Enlaces de ayuda */
+.form-links {
+  margin: 1rem 0 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.form-links a {
+  color: #fff;
+  text-decoration: underline;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.form-links a:hover {
+  color: #dcd3ff;
+}
+
+/* Vista previa de imagen (opcional) */
+.preview-img {
+  display: block;
+  margin: 1rem auto;
+  max-width: 100px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 import {NgIf} from '@angular/common';
@@ -11,7 +11,8 @@ import {CreateUserDTO} from './dtos/CreateUserDTO';
   styleUrls: ['./user-register.component.css'],
   imports: [
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    FormsModule
   ]
 
 
@@ -19,6 +20,15 @@ import {CreateUserDTO} from './dtos/CreateUserDTO';
 export class userRegisterComponent {
   registerForm: FormGroup;
   submitted = false;
+  user = {
+    nombre: '',
+    apellido: '',
+    email: '',
+    username: '',
+    password: '',
+    rol: '',
+    imagen: null as File | null
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,5 +72,13 @@ export class userRegisterComponent {
         console.error('Error al registrar el usuario:', err);
       }
     });
+  }
+
+  onFileSelected(event: Event): void {
+    const target = event.target as HTMLInputElement;
+
+    if (target?.files?.length) {
+      this.user.imagen = target.files[0];
+    }
   }
 }
