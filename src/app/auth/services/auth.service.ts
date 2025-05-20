@@ -91,18 +91,28 @@ export class AuthService {
       );
     }
 
-  getCurrentUserId(): number | null {
+  getCurrentUserUuid(): string | null {
     const token = localStorage.getItem('token');
     if (!token) return null;
 
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.idUser || null;  // Asegúrate de que `idUser` sea el nombre correcto en el payload
+      return payload.uuid || null;
     } catch (error) {
       console.error('Error al decodificar el token:', error);
       return null;
     }
   }
 
+
+  logout(): void {
+    // Eliminar token y cualquier otro dato del usuario
+    localStorage.removeItem('token');
+    localStorage.removeItem('user'); // si guardas info extra
+    localStorage.removeItem('idUsuario'); // si lo estás usando
+
   }
+}
+
+
 

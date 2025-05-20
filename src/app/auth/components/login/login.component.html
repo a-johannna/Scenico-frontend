@@ -6,18 +6,29 @@
 
     <h4>¡Haz qué el mundo te mire!</h4>
 
-    <form (ngSubmit)="onSubmit()">
-      <div *ngIf="error" class="error-message">{{ error }}</div>
+    <!-- Mostrar errores del servidor -->
+    <div *ngIf="errorMessages.length" class="error-message">
+      <ul>
+        <li *ngFor="let msg of errorMessages">{{ msg }}</li>
+      </ul>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
       <div class="form-group">
-        <label for="username">Usuario</label>
+        <label for="email">Correo electrónico</label>
         <input
-          type="text"
-          id="username"
-          [(ngModel)]="user.username"
-          name="username"
-          required
+          type="email"
+          id="email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && loginForm.get('email')?.invalid }"
         />
+        <div *ngIf="submitted && loginForm.get('email')?.errors?.['required']" class="invalid-feedback">
+          El correo es obligatorio.
+        </div>
+        <div *ngIf="submitted && loginForm.get('email')?.errors?.['email']" class="invalid-feedback">
+          El formato del correo no es válido.
+        </div>
       </div>
 
       <div class="form-group">
@@ -25,18 +36,19 @@
         <input
           type="password"
           id="password"
-          [(ngModel)]="user.password"
-          name="password"
-          required
+          formControlName="password"
+          [ngClass]="{ 'is-invalid': submitted && loginForm.get('password')?.invalid }"
         />
+        <div *ngIf="submitted && loginForm.get('password')?.errors?.['required']" class="invalid-feedback">
+          La contraseña es obligatoria.
+        </div>
       </div>
 
+      <!-- Enlaces debajo de los campos -->
       <div class="form-links">
         <button type="button" class="link-button" (click)="forgotPassword()">¿Olvidaste tu contraseña?</button>
         <button type="button" class="link-button" (click)="createUser()">¿No tienes Cuenta? Regístrate</button>
       </div>
-
-
 
       <button type="submit">Entrar</button>
     </form>

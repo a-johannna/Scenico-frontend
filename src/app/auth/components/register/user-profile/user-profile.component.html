@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div class="profile-container" *ngIf="user">
+  <div class="profile-header">
+    <img *ngIf="user.photoProfile" [ngSrc]="user.photoProfile" [width]="100" [height]="100" alt="Foto de perfil"
+         class="profile-image"/>
+    <div *ngIf="!user.photoProfile" class="profile-placeholder">Sin imagen</div>
+
+    <div class="profile-info">
+      <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+      <h4>{{ user.username }}</h4>
+    </div>
+  </div>
+
+  <div class="profile-description" *ngIf="user.description">
+    <p>{{ user.description }}</p>
+  </div>
+    <div class="profile-buttons">
+        <button (click)="openEditDialog()">Editar Perfil</button>
+        <button (click)="openAdvancedSettings()">+</button>
+
+
+    </div>
+</div>
+
+<div *ngIf="user" class="profile-container">
+
+    <h3>Portafolios creados</h3>
+    <div *ngIf="portafolios.length > 0; else sinPortafolios">
+        <ul>
+            <li *ngFor="let p of portafolios">
+                <strong>{{ p.titulo }}</strong> — {{ p.descripcion }}
+            </li>
+        </ul>
+    </div>
+    <ng-template #sinPortafolios>
+        <p>Este usuario aún no ha creado ningún portafolio.</p>
+    </ng-template>
+</div>
+
+
+</body>
+</html>

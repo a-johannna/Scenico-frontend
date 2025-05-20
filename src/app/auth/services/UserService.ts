@@ -22,7 +22,7 @@ export class UserService {
 
   // Obtener un usuario por UUID
   getUserByUuid(uuid: string): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.apiUrl}/buscar/${uuid}`);
+    return this.http.get<Usuario>(`${this.apiUrl}/uuid/${uuid}`);
   }
 
   // Crear un nuevo usuario
@@ -32,11 +32,11 @@ export class UserService {
 
   // Actualizar usuario existente por UUID
   updateUser(uuid: string, usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${this.apiUrl}/editar/${uuid}`, usuario);
+    return this.http.put<Usuario>(`${this.apiUrl}/uuid/${uuid}`, usuario);
   }
 
   // Eliminar usuario por UUID
   deleteUser(uuid: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/eliminar/${uuid}`);
+    return this.http.delete(`${this.apiUrl}/uuid/${uuid}`);
   }
 }

@@ -2,53 +2,80 @@
 import { Component } from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import { LoginRequestDTO } from './dtos/LoginRequestDTO';
-import {FormsModule} from '@angular/forms';
-import {NgIf} from '@angular/common';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {AuthService} from '../../services/auth.service';
 import {catchError, of, tap} from 'rxjs';
 import {userRegisterComponent} from '../register/user-register/user-register.component';
+import {LoginResponseDTO} from './dtos/LoginResponseDTO';
 
 @Component({
   selector: 'app-login',
   templateUrl:'login.component.html',
   imports: [
     FormsModule,
-    NgIf
+    NgIf,
+    ReactiveFormsModule,
+    NgClass,
+    NgForOf
   ],
   styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent {
+  loginForm: FormGroup;
+  submitted = false;
+  errorMessages: string[] = [];
 
-  user: LoginRequestDTO = { username: '', password: '' };
-  error: string | null = null;
-  isLoading = false; // Declarar e inicializar isLoading
-
-  constructor(private authService: AuthService, private router: Router) {
-
-    console.log('LoginComponent');
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 
-   createUser() {
+  onSubmit(): void {
+    this.submitted = true;
+    this.errorMessages = [];
+
+    if (this.loginForm.invalid) return;
+
+    const credentials: LoginRequestDTO = this.loginForm.value;
+
+    this.authService.login(credentials).subscribe({
+      next: (res: LoginResponseDTO) => {
+        if (res.token) {
+          localStorage.setItem('token', res.token);
+
+          const uuid = this.authService.getCurrentUserUuid();
+          if (uuid) {
+            this.router.navigate([`/uuid/${uuid}`]);
+          } else {
+            this.errorMessages.push('No se pudo identificar al usuario.');
+          }
+        } else {
+          this.errorMessages.push('No se recibió el token.');
+        }
+      },
+      error: (err: any) => {
+        this.errorMessages = Array.isArray(err)
+          ? err
+          : ['Error inesperado al iniciar sesión'];
+        console.error('Error en login:', err);
+      }
+    });
+  }
+  createUser() {
     this.router.navigate(['/register']);
   }
 
   forgotPassword() {
     this.router.navigate(['/reset-password']);
   }
-
-  onSubmit(): void {
-    this.isLoading = true; // Iniciar la indicación de carga
-    this.error = null; // Limpiar cualquier error anterior
-    this.authService.login(this.user).pipe(
-      tap(response => localStorage.setItem('token', response.token)),
-      catchError(err => {
-        this.error = 'Error al iniciar sesión: ' + err?.message || 'Error desconocido'; // Manejo de errores mejorado
-        console.error('Error al iniciar sesión:', err);
-        return of(null); // Devolver un valor para que el observable complete
-      })
-    )
-  }
-
-
-  protected readonly userRegisterComponent = userRegisterComponent;
 }
+

@@ -52,6 +52,48 @@ export class userRegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+
+    if (this.registerForm.invalid) {
+      console.log("Formulario inválido:", this.registerForm.value);
+      return;
+    }
+
+    const createUserDTO: CreateUserDTO = this.registerForm.value;
+
+    this.authService.register(createUserDTO).subscribe({
+      next: res => {
+        this.errorMessages = [];
+        this.successMessage =  `¡Usuario ${res.username} registrado correctamente!`;
+
+        // Guardar el token (si viene en la respuesta)
+        if (res.token) {
+          localStorage.setItem('token', res.token);
+        }
+
+        // Obtener UUID desde el token y redirigir al perfil
+        const uuid = this.authService.getCurrentUserUuid();
+        if (uuid) {
+          this.router.navigate([`/uuid/${uuid}`]);
+        } else {
+          console.warn('UUID no encontrado en el token');
+        }
+      },
+
+      error: (errors: any) => {
+        if (errors.status === 400) {
+          this.errorMessages = errors.error?.errors || ['Solicitud malformada'];
+        } else if (errors.status === 500) {
+          this.errorMessages = ['Error interno del servidor. Intenta más tarde.'];
+        } else {
+          this.errorMessages = ['Error desconocido'];
+        }
+      }
+    });
+  }
+
+/*
+  onSubmit(): void {
+    this.submitted = true;
     if (this.registerForm.invalid) return;
 
     const createUserDTO: CreateUserDTO = this.registerForm.value;
@@ -60,7 +102,7 @@ export class userRegisterComponent implements OnInit {
       next: res => {
         this.errorMessages = [];
         this.successMessage =  `¡Usuario ${res.username} registrado correctamente!`;
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login']);  // redireccionar al perfil del usuario
       },
       error: (errors: any) => {
         if (errors.status === 400) {
@@ -75,6 +117,8 @@ export class userRegisterComponent implements OnInit {
 
     });
   }
+
+ */
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;

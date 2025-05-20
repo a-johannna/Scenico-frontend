@@ -18,7 +18,6 @@
   max-width: 360px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   color: #fff;
-  /**border: 1px solid #fff;**/
 }
 
 .login-card h2 {
@@ -29,13 +28,11 @@
 }
 
 .title-oval {
-
   padding: 0.5rem 1.5rem;
   border-radius: 900px;
   margin: 0 auto 1.5rem;
   text-align: center;
   border: 1px solid #fff;
-
 }
 
 .title-oval h2 {
@@ -44,16 +41,14 @@
   color: #fff;
 }
 
-
 h4 {
   text-align: center;
-
 }
 
 /* Formularios */
 .form-group {
   margin-bottom: 1.2rem;
-  padding: 0 0.30rem;
+  padding: 0 0.3rem;
 }
 
 label {
@@ -62,10 +57,11 @@ label {
   font-weight: 500;
 }
 
+input[type="email"],
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  padding: 0.75rem 0.10rem;
+  padding: 0.75rem 0.5rem;
   border-radius: 10px;
   font-size: 1rem;
   background: rgba(255, 255, 255, 0.2);
@@ -78,8 +74,20 @@ input::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
+/* Validación visual */
+.is-invalid {
+  border-color: #ff6b6b;
+  background-color: rgba(255, 0, 0, 0.1);
+}
 
-button {
+.invalid-feedback {
+  color: #ffbdbd;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+/* Botón principal */
+button[type="submit"] {
   width: 100%;
   padding: 0.75rem;
   border: none;
@@ -90,12 +98,14 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease;
+  margin-top: 1rem;
 }
 
-button:hover {
+button[type="submit"]:hover {
   background-color: #5a54e8;
 }
 
+/* Error general desde backend */
 .error-message {
   background-color: rgba(255, 0, 0, 0.2);
   padding: 0.5rem;
@@ -104,6 +114,8 @@ button:hover {
   margin-bottom: 1rem;
   text-align: center;
 }
+
+/* Botones de enlace */
 .form-links {
   margin-top: 1rem;
   margin-bottom: 1.5rem;
@@ -112,15 +124,10 @@ button:hover {
   text-align: center;
 }
 
-.form-links {
-  text-align: center;
-  margin-top: 1rem;
-}
-
 .link-button {
   background: none;
   border: none;
-  color: #ffffff; /* o el color que use tu fondo */
+  color: #ffffff;
   text-decoration: underline;
   font-size: 0.9rem;
   cursor: pointer;
@@ -130,5 +137,5 @@ button:hover {
 }
 
 .link-button:hover {
-  color: #e0e0e0; /* tono más claro al pasar el ratón */
+  color: #e0e0e0;
 }
