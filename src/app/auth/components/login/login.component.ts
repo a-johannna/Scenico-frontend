@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import {Router, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import { LoginRequestDTO } from './dtos/LoginRequestDTO';
 import {FormsModule} from '@angular/forms';
 import {NgIf} from '@angular/common';
@@ -13,8 +13,7 @@ import {userRegisterComponent} from '../register/user-register/user-register.com
   templateUrl:'login.component.html',
   imports: [
     FormsModule,
-    NgIf,
-    RouterOutlet
+    NgIf
   ],
   styleUrls: ['./login.component.css']
 })
@@ -31,6 +30,10 @@ export class LoginComponent {
 
    createUser() {
     this.router.navigate(['/register']);
+  }
+
+  forgotPassword() {
+    this.router.navigate(['/reset-password']);
   }
 
   onSubmit(): void {

@@ -6,59 +6,160 @@
 </head>
 <body>
 
+<div class="form-container">
+  <h2>Registro de usuario</h2>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <!-- Lista de errores -->
+  <div *ngIf="errorMessages?.length" class="error-message">
+    <ul>
+      <li *ngFor="let msg of errorMessages">{{ msg }}</li>
+    </ul>
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <div class="info-group">
+      <label for="username">Nombre de usuario</label>
+      <input id="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && registerForm.get('username')?.invalid }" />
+    </div>
+
+    <div class="info-group">
+      <label for="email">Correo electrónico</label>
+      <input id="email" type="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && registerForm.get('email')?.invalid }" />
+    </div>
+
+    <div class="info-group">
+      <label for="password">Contraseña</label>
+      <input id="password" type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && registerForm.get('password')?.invalid }" />
+    </div>
+
+    <div class="info-group">
+      <label for="firstName">Nombre</label>
+      <input id="firstName" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && registerForm.get('firstName')?.invalid }" />
+    </div>
+
+    <div class="info-group">
+      <label for="lastName">Apellidos</label>
+      <input id="lastName" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && registerForm.get('lastName')?.invalid }" />
+    </div>
 
 
+    <div class="info-group">
+      <label for="location">Ciudad</label>
+      <input id="location" formControlName="location" />
+    </div>
+
+
+    <div class="info-group">
+      <label for="description">Descripción personal</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+
+    <div class="info-group">
+      <label for="rol">Rol</label>
+      <select id="rol" formControlName="rol" required>
+        <option value="USUARIO_NORMAL">Usuario</option>
+        <option value="ARTISTA">Artista</option>
+        <option value="EMPRESA">Empresa</option>
+        <option value="ADMIN">Admin</option>
+      </select>
+    </div>
+
+    <div class="info-group">
+      <label for="photoProfile">Imagen de perfil</label>
+      <input id="photoProfile" type="file" (change)="onFileSelected($event)" />
+    </div>
+
+    <button type="submit">Registrarse</button>
+  </form>
+</div>
+
+<!--
 <div class="container">
 
   <div class="logo-header">
-    <!-- <img src="assets/logo.png" alt="Scénico logo" /> -->
+    <img src="assets/logo.png" alt="Scénico logo" />
     <h1>Scénico</h1>
 
   </div>
-<form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-  <div class="form-group">
-    <label for="nombre">Nombre</label>
-    <input type="text" id="nombre" name="nombre" [(ngModel)]="user.nombre" required />
+
+  <div *ngIf="errorMessages?.length" class="error-message">
+      <ul>
+        <li *ngFor="let msg of errorMessages">{{ msg }}</li>
+      </ul>
   </div>
 
-  <div class="form-group">
-    <label for="apellido">Apellido</label>
-    <input type="text" id="apellido" name="apellido" [(ngModel)]="user.apellido" required />
-  </div>
 
-  <div class="form-group">
-    <label for="email">Correo electrónico</label>
-    <input type="email" id="email" name="email" [(ngModel)]="user.email" required />
-  </div>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-  <div class="form-group">
-    <label for="username">Nombre de usuario</label>
-    <input type="text" id="username" name="username" [(ngModel)]="user.username" required />
-  </div>
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" formControlName="firstName" class="form-control"
+             [ngClass]="{'is-invalid': submitted && registerForm.get('firstName')?.invalid}" />
+      <div class="invalid-feedback" *ngIf="submitted && registerForm.get('firstName')?.errors?.['required']">
+        El nombre es obligatorio.
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label for="password">Contraseña</label>
-    <input type="password" id="password" name="password" [(ngModel)]="user.password" required />
-  </div>
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input type="text" id="apellido" formControlName="lastName" class="form-control" />
+    </div>
 
-  <div class="form-group">
-    <label for="rol">Rol</label>
-    <select id="rol" name="rol" [(ngModel)]="user.rol" required>
-      <option value="ARTISTA">Artista</option>
-      <option value="ESPECTADOR">Espectador</option>
-      <option value="ADMIN">Administrador</option>
-    </select>
-  </div>
+    <div class="form-group">
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" formControlName="email" class="form-control"
+             [ngClass]="{'is-invalid': submitted && registerForm.get('email')?.invalid}" />
+      <div class="invalid-feedback" *ngIf="submitted && registerForm.get('email')?.errors?.['required']">
+        El correo es obligatorio.
+      </div>
+      <div class="invalid-feedback" *ngIf="submitted && registerForm.get('email')?.errors?.['email']">
+        El formato del correo no es válido.
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label for="imagen">Imagen de perfil</label>
-    <input type="file" id="imagen" name="imagen" (change)="onFileSelected($event)" />
-  </div>
+    <div class="form-group">
+      <label for="username">Nombre de usuario</label>
+      <input type="text" id="username" formControlName="username" class="form-control"
+             [ngClass]="{'is-invalid': submitted && registerForm.get('username')?.invalid}" />
+      <div class="invalid-feedback" *ngIf="submitted && registerForm.get('username')?.errors?.['required']">
+        El nombre de usuario es obligatorio.
+      </div>
+    </div>
 
-  <button type="submit">Registrarse</button>
-</form>
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" formControlName="password" class="form-control"
+             [ngClass]="{'is-invalid': submitted && registerForm.get('password')?.invalid}" />
+      <div class="invalid-feedback" *ngIf="submitted && registerForm.get('password')?.errors?.['required']">
+        La contraseña es obligatoria.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="rol">Rol</label>
+      <select id="rol" formControlName="rol" class="form-control" required>
+        <option value="">Seleccione un rol</option>
+        <option value="ARTISTA">Artista</option>
+        <option value="ESPECTADOR">Espectador</option>
+        <option value="ADMIN">Administrador</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="imagen">Imagen de perfil</label>
+      <input type="file" id="imagen" (change)="onFileSelected($event)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrarse</button>
+  </form>
 </div>
-
+-->
 
 </body>
 </html>

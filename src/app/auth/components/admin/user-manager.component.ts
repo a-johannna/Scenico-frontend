@@ -1,89 +1,104 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AuthService} from '../../../services/auth.service';
+
 import {NgClass, NgForOf, NgIf} from '@angular/common';
-import {CreateUserDTO, RolUsuario} from './dtos/CreateUserDTO';
+import {Usuario} from '../../models/usuario';
+import {UserService} from '../../services/UserService';
+
 
 
 @Component({
-  selector: 'app-user-register',
-  templateUrl: './user-register.component.html',
-  styleUrls: ['./user-register.component.css'],
+  selector: 'app-user-manager',
+ templateUrl: './user-manager.component.html',
+  styleUrls: ['./user-manager.component.css'],
   imports: [
-    ReactiveFormsModule,
-    NgIf,
     FormsModule,
-    NgClass,
-    NgForOf,
-
+    ReactiveFormsModule,
+    NgIf
   ]
-
-
 })
 
-export class userRegisterComponent implements OnInit {
+export class userManagerComponent implements OnInit {
 
-  registerForm!: FormGroup;
-  submitted = false;
-  errorMessages: string[] = [];
-  successMessage: string = '';
-  selectedImage: File | null = null;
+  usuarios: Usuario[] = [];
+  nuevoUsuario: Usuario = this.resetUsuario();
+  editando: boolean = false;
+  usuarioEditandoUuid: string = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.registerForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(4)]],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      rol: [RolUsuario.USUARIO_NORMAL, Validators.required],
-      location: [''],
-      description: [''],
-      photoProfile: ['']
+    this.cargarUsuarios();
+  }
+
+  // Cargar lista
+  cargarUsuarios(): void {
+    this.userService.getAllUsers().subscribe({
+      next: data => this.usuarios = data,
+      error: err => console.error('Error al cargar usuarios', err)
     });
   }
 
-  onSubmit(): void {
-    this.submitted = true;
-    if (this.registerForm.invalid) return;
-
-    const createUserDTO: CreateUserDTO = this.registerForm.value;
-
-    this.authService.register(createUserDTO).subscribe({
-      next: res => {
-        this.errorMessages = [];
-        this.successMessage =  `¡Usuario ${res.username} registrado correctamente!`;
-        this.router.navigate(['/login']);
+  // Crear nuevo
+  registrarUsuario(): void {
+    this.userService.createUser(this.nuevoUsuario).subscribe({
+      next: () => {
+        this.cargarUsuarios();
+        this.nuevoUsuario = this.resetUsuario();
       },
-      error: (errors: any) => {
-        if (errors.status === 400) {
-          this.errorMessages = errors.error?.errors || ['Solicitud malformada'];
-        } else if (errors.status === 500) {
-          this.errorMessages = ['Error interno del servidor. Intenta más tarde.'];
-        } else {
-          this.errorMessages = ['Error desconocido'];
-        }
-      }
-
-
+      error: err => console.error('Error al crear usuario', err)
     });
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input?.files?.length) {
-      this.selectedImage = input.files[0];
-      // si luego quieres subir la imagen, aquí puedes gestionarla
+  // Eliminar
+  eliminarUsuario(uuid: string): void {
+    if (confirm('¿Seguro que deseas eliminar este usuario?')) {
+      this.userService.deleteUser(uuid).subscribe({
+        next: () => this.cargarUsuarios(),
+        error: err => console.error('Error al eliminar usuario', err)
+      });
     }
   }
+
+  // Preparar edición
+  editarUsuario(usuario: Usuario): void {
+    this.nuevoUsuario = { ...usuario }; // Clonar datos
+    this.editando = true;
+    this.usuarioEditandoUuid = usuario.uuid!;
+  }
+
+  // Confirmar edición
+  actualizarUsuario(): void {
+    this.userService.updateUser(this.usuarioEditandoUuid, this.nuevoUsuario).subscribe({
+      next: () => {
+        this.cargarUsuarios();
+        this.cancelarEdicion();
+      },
+      error: err => console.error('Error al actualizar usuario', err)
+    });
+  }
+
+  // Cancelar edición
+  cancelarEdicion(): void {
+    this.editando = false;
+    this.usuarioEditandoUuid = '';
+    this.nuevoUsuario = this.resetUsuario();
+  }
+
+  private resetUsuario(): Usuario {
+    return {
+      username: '',
+      email: '',
+      firstName: '',
+      lastName: '',
+      rol: 'USUARIO_NORMAL'
+    };
+  }
+
+
+
 }
+
 
 
 /*export class userRegisterComponent {

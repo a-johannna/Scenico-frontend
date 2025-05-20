@@ -1,148 +1,283 @@
-/* Fondo general */
-body {
-  margin: 0;
-  padding: 0;
+
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.logo-header {
+.form-container h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: purple;
-
+  color: #333;
 }
 
-.logo-header img {
-  width: 120px; /* ajusta según tamaño deseado */
-  height: auto;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
-}
-
-
-.container {
-  background: whitesmoke;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 16px;
-  padding: 2rem;
-  width: 100%;
-  max-width: 360px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  color: #fff;
-}
-
-/* Contenedor principal del formulario */
-.card-glass {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 2rem;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  color: #fff;
-}
-
-/* Título dentro de óvalo */
-.title-oval {
-  display: inline-block;
-  padding: 0.5rem 2rem;
-  border: 1px solid white;
-  border-radius: 999px;
-  margin: 0 auto 1.5rem;
-  font-weight: bold;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-/* Subtítulo */
-.subtitle {
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-  color: purple;
-}
-
-/* Etiquetas e inputs */
-.form-group {
-  margin-bottom: 1.2rem;
-  padding: 0 1rem;
-  color: purple;
+.info-group {
+  margin-bottom: 1.25rem;
 }
 
 label {
+  font-weight: 600;
   display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-
+  margin-bottom: 0.4rem;
+  color: #444;
 }
 
 input,
+textarea,
 select {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
-  /*border: none; */
-  border: 1px solid purple;
-  font-size: 1rem;
-  background: rgba(255, 255, 255, 0.2);
-  color: plum;
-  outline: none;
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
   box-sizing: border-box;
+  transition: border-color 0.2s ease;
 }
 
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+}
 
-
-/* Botón principal */
-button[type="submit"] {
-  width: 100%;
-  padding: 0.75rem;
+button {
   margin-top: 1rem;
-  border-radius: 10px;
-  background: linear-gradient(to right, #6a5acd, #7b68ee);
+  margin-right: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  background-color: #007bff;
   color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
 }
 
-button[type="submit"]:hover {
-  background: linear-gradient(to right, #7b68ee, #6a5acd);
+button:hover {
+  background-color: #0056b3;
 }
 
-/* Enlaces de ayuda */
-.form-links {
-  margin: 1rem 0 1.5rem;
-  text-align: center;
-  font-size: 0.9rem;
+button[type="button"] {
+  background-color: #6c757d;
 }
 
-.form-links a {
-  color: #fff;
-  text-decoration: underline;
-  margin: 0 0.5rem;
-  transition: color 0.3s ease;
+button[type="button"]:hover {
+  background-color: #495057;
 }
 
-.form-links a:hover {
-  color: #dcd3ff;
+
+/*.profile-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 1.5rem;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Vista previa de imagen (opcional) */
-.preview-img {
+.info-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: bold;
   display: block;
-  margin: 1rem auto;
-  max-width: 100px;
-  border-radius: 50%;
-  border: 2px solid #fff;
+  margin-bottom: 0.25rem;
 }
+
+input, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+/*!**/
+
+/*!* Fondo general *!*/
+
+/*body {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  font-family: 'Segoe UI', sans-serif;*/
+/*  background: linear-gradient(135deg, #667eea, #764ba2);*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*}*/
+
+/*.logo-header {*/
+/*  text-align: center;*/
+/*  margin-bottom: 1.5rem;*/
+/*  color: purple;*/
+
+/*}*/
+
+/*.logo-header img {*/
+/*  width: 120px; !* ajusta según tamaño deseado *!*/
+/*  height: auto;*/
+/*  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));*/
+/*}*/
+
+
+/*.container {*/
+/*  background: whitesmoke;*/
+/*  backdrop-filter: blur(15px);*/
+/*  -webkit-backdrop-filter: blur(15px);*/
+/*  border-radius: 16px;*/
+/*  padding: 2rem;*/
+/*  width: 100%;*/
+/*  max-width: 360px;*/
+/*  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);*/
+/*  color: #fff;*/
+/*}*/
+
+/*!* Contenedor principal del formulario *!*/
+/*.card-glass {*/
+/*  background: rgba(255, 255, 255, 0.05);*/
+/*  border: 1px solid rgba(255, 255, 255, 0.3);*/
+/*  backdrop-filter: blur(20px);*/
+/*  -webkit-backdrop-filter: blur(20px);*/
+/*  border-radius: 20px;*/
+/*  padding: 2rem;*/
+/*  width: 90%;*/
+/*  max-width: 400px;*/
+/*  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);*/
+/*  color: #fff;*/
+/*}*/
+
+/*!* Título dentro de óvalo *!*/
+/*.title-oval {*/
+/*  display: inline-block;*/
+/*  padding: 0.5rem 2rem;*/
+/*  border: 1px solid white;*/
+/*  border-radius: 999px;*/
+/*  margin: 0 auto 1.5rem;*/
+/*  font-weight: bold;*/
+/*  font-size: 1.5rem;*/
+/*  text-align: center;*/
+/*}*/
+
+/*!* Subtítulo *!*/
+/*.subtitle {*/
+/*  text-align: center;*/
+/*  font-weight: bold;*/
+/*  margin-bottom: 2rem;*/
+/*  font-size: 1.1rem;*/
+/*  color: purple;*/
+/*}*/
+
+/*!* Etiquetas e inputs *!*/
+/*.form-group {*/
+/*  margin-bottom: 1.2rem;*/
+/*  padding: 0 1rem;*/
+/*  color: purple;*/
+/*}*/
+
+/*label {*/
+/*  display: block;*/
+/*  margin-bottom: 0.5rem;*/
+/*  font-weight: 500;*/
+
+/*}*/
+
+/*input,*/
+/*select {*/
+/*  width: 100%;*/
+/*  padding: 0.75rem 1rem;*/
+/*  border-radius: 10px;*/
+/*  !*border: none; *!*/
+/*  border: 1px solid purple;*/
+/*  font-size: 1rem;*/
+/*  background: rgba(255, 255, 255, 0.2);*/
+/*  !*color: plum;*!*/
+/*  outline: none;*/
+/*  box-sizing: border-box;*/
+/*}*/
+
+/*.invalid-feedback {*/
+/*  background-color: #ffebeb !important;*/
+/*  color: #a10000 !important;*/
+/*  border: 1px solid #ffa5a5;*/
+/*  padding: 0.5rem;*/
+/*  margin-top: 0.5rem;*/
+/*  border-radius: 8px;*/
+/*  font-size: 0.9rem;*/
+/*  margin-bottom: 1.5rem;*/
+/*  box-shadow: 0 0 6px rgba(255, 0, 0, 0.1);*/
+/*}*/
+
+/*.error-message ul {*/
+/*  margin: 0;*/
+/*  padding-left: 1.2rem;*/
+/*}*/
+
+/*.error-message li {*/
+/*  list-style: disc;*/
+/*}*/
+
+
+
+/*!* Botón principal *!*/
+/*button[type="submit"] {*/
+/*  width: 100%;*/
+/*  padding: 0.75rem;*/
+/*  margin-top: 1rem;*/
+/*  border-radius: 10px;*/
+/*  background: linear-gradient(to right, #6a5acd, #7b68ee);*/
+/*  color: #fff;*/
+/*  font-size: 1rem;*/
+/*  font-weight: bold;*/
+/*  border: none;*/
+/*  cursor: pointer;*/
+/*  transition: background 0.3s ease;*/
+/*}*/
+
+/*button[type="submit"]:hover {*/
+/*  background: linear-gradient(to right, #7b68ee, #6a5acd);*/
+/*}*/
+
+/*!* Enlaces de ayuda *!*/
+/*.form-links {*/
+/*  margin: 1rem 0 1.5rem;*/
+/*  text-align: center;*/
+/*  font-size: 0.9rem;*/
+/*}*/
+
+/*.form-links a {*/
+/*  color: #fff;*/
+/*  text-decoration: underline;*/
+/*  margin: 0 0.5rem;*/
+/*  transition: color 0.3s ease;*/
+/*}*/
+
+/*.form-links a:hover {*/
+/*  color: #dcd3ff;*/
+/*}*/
+
+/*!* Vista previa de imagen (opcional) *!*/
+/*.preview-img {*/
+/*  display: block;*/
+/*  margin: 1rem auto;*/
+/*  max-width: 100px;*/
+/*  border-radius: 50%;*/
+/*  border: 2px solid #fff;*/
+/*}*/
+/**!*/

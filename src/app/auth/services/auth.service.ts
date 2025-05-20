@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {catchError, Observable, retry, throwError} from 'rxjs';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {catchError, Observable, retry, tap, throwError} from 'rxjs';
 import { LoginRequestDTO } from '../components/login/dtos/LoginRequestDTO';
 import { LoginResponseDTO } from '../components/login/dtos/LoginResponseDTO';
 import {CreateUserDTO} from '../components/register/user-register/dtos/CreateUserDTO';
 import {UserResponseDTO} from '../components/register/user-register/dtos/UserResponseDTO';
-import {UserService} from "./UserService";
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/users'; // Reemplaza con la URL de tu backend
+  private apiUrl = environment.url;
 
-  constructor(private http: HttpClient,private userService: UserService) { }
+  constructor(private http: HttpClient) { }
 
   login(credentials: LoginRequestDTO): Observable<LoginResponseDTO> { // Usa la interfaz aquí
     return this.http.post<LoginResponseDTO>(`${this.apiUrl}/login`, credentials).pipe(
     retry(5),
       catchError(this.handleError));
   }
+
 
   private handleError(error: any) {
     let errorMessage = '';
@@ -36,8 +37,72 @@ export class AuthService {
   }
 
 
-  register(createUserDTO: CreateUserDTO): Observable<UserResponseDTO> {
-    return this.userService.createUser(createUserDTO); // Retorna el observable directamente
+  register(data: CreateUserDTO): Observable<UserResponseDTO> {
+
+    const headers = new HttpHeaders( {
+      'Content-Type': 'application/json'
+
+    });
+
+    return this.http.post<UserResponseDTO>(`${this.apiUrl}/register`, data).pipe(
+      tap(response => {
+        console.log('Usuario registrado correctamente: ', response);
+      }),
+
+      catchError(error => {
+        // Log detallado del error
+        console.error('Error en registro:', error);
+
+        if (error.status === 401) {
+          console.error('Error de autenticación - Detalles:', error);
+          return throwError(() => ['No autorizado. Verifica las credenciales o permisos.']);
+        }
+
+        if (error.status === 400 && error.error?.errors) {
+          const messages = error.error.errors.map((e: any) => e.defaultMessage || e.message);
+          return throwError(() => messages);
+        }
+
+        return throwError(() => ['Error inesperado en el servidor.']);
+      })
+
+    );
   }
 
-}
+
+
+
+    resetPassword(email: string, newPassword: string): Observable<any> {
+      return this.http.post('/api/auth/reset-password', { email, newPassword }).pipe(
+        catchError((error: HttpErrorResponse) => {
+          // Manejo de errores del backend
+          let errorMessage = 'Error desconocido';
+          if (error.error instanceof ErrorEvent) {
+            // Error del cliente
+            errorMessage = `Error: ${error.error.message}`;
+          } else {
+            // Error del backend
+            errorMessage = `Código de error: ${error.status}\nMensaje: ${error.error?.message || error.message}`;
+          }
+
+          console.error(errorMessage);
+          return throwError(() => new Error(errorMessage)); // Propaga el error para que el componente lo maneje.
+        })
+      );
+    }
+
+  getCurrentUserId(): number | null {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.idUser || null;  // Asegúrate de que `idUser` sea el nombre correcto en el payload
+    } catch (error) {
+      console.error('Error al decodificar el token:', error);
+      return null;
+    }
+  }
+
+  }
+

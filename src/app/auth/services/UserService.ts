@@ -2,8 +2,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {CreateUserDTO} from "../components/register/user-register/dtos/CreateUserDTO";
-import {UserResponseDTO} from "../components/register/user-register/dtos/UserResponseDTO";
+import {environment} from '../../../environments/environment';
+import {Usuario} from '../models/usuario';
 
 
 @Injectable({
@@ -11,11 +11,32 @@ import {UserResponseDTO} from "../components/register/user-register/dtos/UserRes
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/u/users'; // Ajusta la URL a tu backend
+  private apiUrl = environment.url; // Ajusta la URL a tu backend
 
   constructor(private http: HttpClient) { }
 
-  createUser(user: CreateUserDTO): Observable<UserResponseDTO> {
-    return this.http.post<UserResponseDTO>(this.apiUrl, user);
+// Obtener todos los usuarios
+  getAllUsers(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.apiUrl}/listar`);
+  }
+
+  // Obtener un usuario por UUID
+  getUserByUuid(uuid: string): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.apiUrl}/buscar/${uuid}`);
+  }
+
+  // Crear un nuevo usuario
+  createUser(usuario: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.apiUrl}/crear`, usuario);
+  }
+
+  // Actualizar usuario existente por UUID
+  updateUser(uuid: string, usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.apiUrl}/editar/${uuid}`, usuario);
+  }
+
+  // Eliminar usuario por UUID
+  deleteUser(uuid: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/eliminar/${uuid}`);
   }
 }
