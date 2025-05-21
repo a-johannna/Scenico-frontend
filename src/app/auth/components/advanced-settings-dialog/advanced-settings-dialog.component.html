@@ -1,16 +1,14 @@
-
-
 <mat-dialog-content>
 
-  <button mat-raised-button color="primary" (click)="cerrarSesion()">
-    Cerrar sesión
-  </button>
+  <!-- Botones en fila -->
+  <div style="display: flex; justify-content: center; gap: 5px; margin-bottom: 5px;">
+    <button mat-button  (click)="cerrarSesion()">Cerrar sesión</button>
+    <button mat-button  (click)="eliminarCuenta()">Eliminar cuenta</button>
+  </div>
 
-  <button mat-raised-button color="warn" (click)="eliminarCuenta()" style="margin-top: 10px;">
-    Eliminar cuenta
-  </button>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
+<!-- Botón 'Cerrar' centrado debajo -->
+<mat-dialog-actions align="center">
   <button mat-button (click)="cerrar()">Cerrar</button>
 </mat-dialog-actions>

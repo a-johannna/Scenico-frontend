@@ -1,35 +1,74 @@
-<!-- profile-edit-dialog.component.html -->
 <h2 mat-dialog-title>Editar Perfil</h2>
+
 <mat-dialog-content>
+
+  <!-- Subida de imagen -->
+  <label for="photoUpload" style="display: block; margin-bottom: 8px;">Foto de perfil</label>
+  <input
+    id="photoUpload"
+    type="file"
+    (change)="onFileSelected($event)"
+    accept="image/*"
+    style="margin-bottom: 16px;"
+  >
+
+  <!-- Preview sin NgOptimizedImage -->
+  <div *ngIf="previewUrl" style="text-align: center;">
+    <img
+      [src]="previewUrl"
+      width="100"
+      height="100"
+      alt="Vista previa"
+      style="border-radius: 50%; object-fit: cover;"
+    >
+  </div>
+
+
+  <!-- Botón para subir imagen -->
+  <div style="text-align: center; margin-top: 10px;">
+    <button mat-stroked-button color="primary" (click)="actulizarPhoto()" [disabled]="!selectedFile">
+      Guardar foto de perfil
+    </button>
+  </div>
+
+  <!-- Datos del usuario -->
   <mat-form-field appearance="fill">
     <mat-label>Usuario</mat-label>
     <input matInput [(ngModel)]="data.username" placeholder="Usuario">
   </mat-form-field>
+
   <mat-form-field appearance="fill">
     <mat-label>Nombre</mat-label>
     <input matInput [(ngModel)]="data.firstName" placeholder="Nombre">
   </mat-form-field>
+
   <mat-form-field appearance="fill">
     <mat-label>Apellido</mat-label>
     <input matInput [(ngModel)]="data.lastName" placeholder="Apellido">
   </mat-form-field>
+
   <mat-form-field appearance="fill">
     <mat-label>Correo electrónico</mat-label>
     <input matInput [(ngModel)]="data.email" placeholder="Correo electrónico">
   </mat-form-field>
+
   <mat-form-field appearance="fill">
     <mat-label>Contraseña</mat-label>
     <input matInput [(ngModel)]="data.password" placeholder="Contraseña">
   </mat-form-field>
+
   <mat-form-field appearance="fill">
     <mat-label>Ubicación</mat-label>
     <input matInput [(ngModel)]="data.location" placeholder="Ciudad">
   </mat-form-field>
+
   <mat-form-field appearance="fill">
     <mat-label>Descripción</mat-label>
     <textarea matInput [(ngModel)]="data.description"></textarea>
   </mat-form-field>
+
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
   <button mat-button (click)="onCancel()">Cancelar</button>
   <button mat-button color="primary" (click)="onSave()">Guardar</button>

@@ -4,7 +4,6 @@ import {
   MatDialogActions,
   MatDialogContent,
   MatDialogRef,
-  MatDialogTitle
 } from '@angular/material/dialog';
 import {AuthService} from '../../services/auth.service';
 import {UserService} from '../../services/UserService';
@@ -14,7 +13,6 @@ import {MatButton} from '@angular/material/button';
 @Component({
   selector: 'app-advanced-settings-dialog',
   imports: [
-    MatDialogTitle,
     MatDialogContent,
     MatButton,
     MatDialogActions
@@ -31,6 +29,8 @@ export class AdvancedSettingsDialogComponent {
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public userId: string
   ) {}
+
+
 
   cerrarSesion() {
     this.authService.logout(); // limpia token y sesión

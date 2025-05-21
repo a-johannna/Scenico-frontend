@@ -39,4 +39,9 @@ export class UserService {
   deleteUser(uuid: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/uuid/${uuid}`);
   }
+
+  uploadPhoto(formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/upload-photo`, formData);
+  }
+
 }
