@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
 import { Usuario } from '../../../models/usuario';
 import { UserService } from '../../../services/UserService';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
@@ -8,6 +7,9 @@ import {PortafolioService} from "../../../services/PorfafolioService";
 import {ProfileEditDialogComponent} from "../../profile-edit-dialog/profile-edit-dialog.component";
 import { MatDialog } from '@angular/material/dialog';
 import {AdvancedSettingsDialogComponent} from "../../advanced-settings-dialog/advanced-settings-dialog.component";
+import {MatButton} from "@angular/material/button";
+import {ActivatedRoute} from "@angular/router";
+import {PortafolioCreateDialogComponent} from "../../portafolio-create-dialog/portafolio-create-dialog.component";
 
 
 
@@ -17,7 +19,8 @@ import {AdvancedSettingsDialogComponent} from "../../advanced-settings-dialog/ad
   imports: [
     NgIf,
     NgOptimizedImage,
-    NgForOf
+    NgForOf,
+    MatButton
   ],
   styleUrls: ['./user-profile.component.css']
 })
@@ -69,5 +72,38 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+
+  abrirFormularioPortafolio(): void {
+    const dialogRef = this.dialog.open(PortafolioCreateDialogComponent, {
+      width: '400px',
+      data: this.user?.username
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.ngOnInit(); // recargar lista de portafolios
+      }
+    });
+  }
+
+  editarPortafolio(p: void) {
+
+  }
+
+  eliminarPortafolio(id: number): void {
+    if (confirm('¿Deseas eliminar este portafolio?')) {
+      this.portafolioService.deletePortafolio(id).subscribe({
+        next: () => {
+          // Elimina el portafolio del arreglo local tras éxito
+          this.portafolios = this.portafolios.filter(p => p.idPortafolio !== id);
+          console.log(`Portafolio con id ${id} eliminado.`);
+        },
+        error: err => {
+          console.error('Error al eliminar el portafolio:', err);
+          alert('Ocurrió un error al intentar eliminar el portafolio.');
+        }
+      });
+    }
+  }
 
 }

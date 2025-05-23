@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Portafolio } from '../models/portafolio';
+import {CreatePortafolioDto} from '../components/register/user-profile/dtos/CreatePortafolioDto';
 
 @Injectable({
   providedIn: 'root'
@@ -30,14 +31,27 @@ export class PortafolioService {
   /**
    * (Opcional) Crear un nuevo portafolio
    */
-  createPortafolio(data: Portafolio): Observable<Portafolio> {
-    return this.http.post<Portafolio>(`${this.apiUrl}/crear`, data);
+  createPortafolio(data: CreatePortafolioDto): Observable<Portafolio> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    };
+
+    return this.http.post<Portafolio>(`${this.apiUrl}`, data, { headers });
   }
+
+
 
   /**
    * (Opcional) Eliminar un portafolio
    */
-  deletePortafolio(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/eliminar/${id}`);
+  deletePortafolio(idPortafolio: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    };
+    return this.http.delete(`${this.apiUrl}/username/${idPortafolio}`, { headers });
   }
 }

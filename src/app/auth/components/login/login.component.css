@@ -1,141 +1,151 @@
-/* Fondo con degradado */
-.background {
-  height: 100vh;
+.login-layout {
+ /* background: linear-gradient(180deg, #1b1b1b, #2a2a2a);*/
+  background: linear-gradient(to top, #e0e0e0, #f7f7f7);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-}
-
-/* Tarjeta estilo glassmorphism */
-.login-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 16px;
+  justify-content: center;
   padding: 2rem;
-  width: 100%;
-  max-width: 360px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  color: #fff;
+  box-sizing: border-box;
 }
 
-.login-card h2 {
+/* Logo */
+.logo-wrapper {
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-  color: #ffffff;
+  margin-bottom: 2rem;
 }
 
-.title-oval {
-  padding: 0.5rem 1.5rem;
-  border-radius: 900px;
-  margin: 0 auto 1.5rem;
-  text-align: center;
-  border: 1px solid #fff;
-}
-
-.title-oval h2 {
+.scenico-logo-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 3.5rem;
+  color: #000000;
   margin: 0;
-  font-size: 1.5rem;
-  color: #fff;
 }
 
-h4 {
+.login-subtitle {
+  font-size: 1rem;
+  color: #000000;
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+/* Formulario */
+.login-container {
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: 2rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  max-width: 420px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Encabezado */
+.login-header {
   text-align: center;
+  margin-bottom: 2.5rem;
 }
 
-/* Formularios */
-.form-group {
+.login-title {
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin: 0.3rem 0;
+  color: #000;
+}
+
+.login-motto {
+  font-style: italic;
+  color: #555;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+/* Inputs */
+.login-form .form-group {
   margin-bottom: 1.2rem;
-  padding: 0 0.3rem;
 }
 
 label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
   display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
 }
 
-input[type="email"],
-input[type="text"],
-input[type="password"] {
+.login-form input[type="email"],
+.login-form input[type="password"] {
   width: 100%;
-  padding: 0.75rem 0.5rem;
-  border-radius: 10px;
-  font-size: 1rem;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #9B111E;
   outline: none;
-  border: 1px solid #fff;
 }
 
-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Validación visual */
 .is-invalid {
-  border-color: #ff6b6b;
-  background-color: rgba(255, 0, 0, 0.1);
+  border-color: #d9534f;
 }
 
 .invalid-feedback {
-  color: #ffbdbd;
-  font-size: 0.85rem;
-  margin-top: 0.3rem;
+  color: #d9534f;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
 }
 
-/* Botón principal */
-button[type="submit"] {
-  width: 100%;
-  padding: 0.75rem;
+/* Botón */
+.login-submit {
+  background-color: #000000;
+  color: #fff;
   border: none;
-  border-radius: 10px;
-  background-color: #6c63ff;
-  color: white;
+  padding: 1rem;
+  border-radius: 2rem;
+  font-weight: bold;
   font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  margin-top: 1rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  /*box-shadow: 0 6px 16px rgba(155, 17, 30, 0.5);*/
+  transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
-  background-color: #5a54e8;
+.login-submit:hover {
+  background-color: #9B111E;
 }
 
-/* Error general desde backend */
-.error-message {
-  background-color: rgba(255, 0, 0, 0.2);
-  padding: 0.5rem;
-  border-radius: 8px;
-  color: #fff;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-/* Botones de enlace */
+/* Links */
 .form-links {
+  display: flex;
+  justify-content: space-between;
   margin-top: 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
-  color: #fff;
-  text-align: center;
 }
 
 .link-button {
   background: none;
   border: none;
-  color: #ffffff;
-  text-decoration: underline;
-  font-size: 0.9rem;
+  color: #9B111E;
+  font-size: 0.85rem;
   cursor: pointer;
-  padding: 0.2rem;
-  margin: 0.2rem;
-  font-family: inherit;
+  text-decoration: underline;
+  padding: 0;
 }
 
 .link-button:hover {
-  color: #e0e0e0;
+  color: #000000;
+}
+
+/* Errores generales */
+.error-message {
+  background-color: #ffe6e6;
+  border: 1px solid #d9534f;
+  color: #b02a37;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
 }
