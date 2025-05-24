@@ -71,7 +71,7 @@
         <p><strong>Etiquetas:</strong> {{ p.etiquetas }}</p>
       </div>
         <div class="portfolio-actions">
-          <button >Editar</button>
+          <button (click)="editarPortafolio(p)">Editar</button>
           <button (click)="eliminarPortafolio(p.idPortafolio)">Eliminar</button>
 
       </div>

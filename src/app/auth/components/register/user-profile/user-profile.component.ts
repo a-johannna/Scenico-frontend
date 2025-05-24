@@ -10,6 +10,7 @@ import {AdvancedSettingsDialogComponent} from "../../advanced-settings-dialog/ad
 import {MatButton} from "@angular/material/button";
 import {ActivatedRoute} from "@angular/router";
 import {PortafolioCreateDialogComponent} from "../../portafolio-create-dialog/portafolio-create-dialog.component";
+import {PortafolioEditDialogComponent} from '../../portafolio-edit-dialog/portafolio-edit-dialog.component';
 
 
 
@@ -86,8 +87,23 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  editarPortafolio(p: void) {
+  editarPortafolio(portafolio: Portafolio) {
+    const dialogRef = this.dialog.open(PortafolioEditDialogComponent, {
+      width: '500px',
+      data: portafolio
+    });
 
+    dialogRef.afterClosed().subscribe((result: Portafolio | undefined) => {
+      if (result) {
+        this.portafolioService.updatePortfolio(result.idPortafolio, result).subscribe({
+          next: () => {
+            console.log('Actualizado correctamente');
+            this.cargarPortafolios(); // o refresca la vista
+          },
+          error: err => console.error('Error actualizando:', err)
+        });
+      }
+    });
   }
 
   eliminarPortafolio(id: number): void {
@@ -106,4 +122,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  private cargarPortafolios() {
+
+  }
 }

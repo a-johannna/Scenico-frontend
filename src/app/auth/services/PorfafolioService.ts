@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Portafolio } from '../models/portafolio';
 import {CreatePortafolioDto} from '../components/register/user-profile/dtos/CreatePortafolioDto';
+import {Usuario} from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,17 @@ export class PortafolioService {
     };
 
     return this.http.post<Portafolio>(`${this.apiUrl}`, data, { headers });
+  }
+
+
+  // Actualizar usuario existente por UUID
+  updatePortfolio(idPortafolio: number, portafolio: Portafolio): Observable<Portafolio> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    };
+    return this.http.put<Portafolio>(`${this.apiUrl}/idPortafolio/${idPortafolio}`, portafolio, { headers });
   }
 
 
