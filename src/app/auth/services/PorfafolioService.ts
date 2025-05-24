@@ -66,4 +66,9 @@ export class PortafolioService {
     };
     return this.http.delete(`${this.apiUrl}/username/${idPortafolio}`, { headers });
   }
+
+  getAllPortafolios(): Observable<Portafolio[]> {
+    return this.http.get<Portafolio[]>(`${this.apiUrl}/all`);
+  }
+
 }

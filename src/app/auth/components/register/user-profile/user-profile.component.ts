@@ -8,7 +8,7 @@ import {ProfileEditDialogComponent} from "../../profile-edit-dialog/profile-edit
 import { MatDialog } from '@angular/material/dialog';
 import {AdvancedSettingsDialogComponent} from "../../advanced-settings-dialog/advanced-settings-dialog.component";
 import {MatButton} from "@angular/material/button";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PortafolioCreateDialogComponent} from "../../portafolio-create-dialog/portafolio-create-dialog.component";
 import {PortafolioEditDialogComponent} from '../../portafolio-edit-dialog/portafolio-edit-dialog.component';
 
@@ -34,7 +34,8 @@ export class UserProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private portafolioService: PortafolioService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -122,7 +123,15 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  private cargarPortafolios() {
-
+  cargarPortafolios(): void {
+    this.portafolioService.getPortafoliosByUserUuid(this.uuid!).subscribe({
+      next: data => this.portafolios = data,
+      error: err => console.error('Error al cargar portafolios:', err)
+    });
   }
+
+  explorarPortafolios(): void {
+    this.router.navigate(['/explorar']);
+  }
+
 }
