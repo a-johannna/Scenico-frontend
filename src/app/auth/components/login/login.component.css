@@ -1,6 +1,7 @@
 .login-layout {
- /* background: linear-gradient(180deg, #1b1b1b, #2a2a2a);*/
-  background: linear-gradient(to top, #e0e0e0, #f7f7f7);
+  background: linear-gradient(to top, #2C0B0E, #9B111E);
+  /*background: linear-gradient(180deg, #1b1b1b, #2a2a2a);*/
+  /*background: linear-gradient(to top, #e0e0e0, #f7f7f7);*/
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
   display: flex;
@@ -20,13 +21,13 @@
 .scenico-logo-text {
   font-family: 'Inter', sans-serif;
   font-size: 3.5rem;
-  color: #000000;
+  color: white;
   margin: 0;
 }
 
 .login-subtitle {
   font-size: 1rem;
-  color: #000000;
+  color: white;
   margin-top: 0.3rem;
   font-style: italic;
 }
@@ -52,7 +53,7 @@
   font-size: 2.1rem;
   font-weight: 600;
   margin: 0.3rem 0;
-  color: #000;
+  color:#9B111E;
 }
 
 .login-motto {
@@ -101,7 +102,7 @@ input:focus {
 
 /* Botón */
 .login-submit {
-  background-color: #000000;
+  background-color: #9B111E;
   color: #fff;
   border: none;
   padding: 1rem;
@@ -115,7 +116,7 @@ input:focus {
 }
 
 .login-submit:hover {
-  background-color: #9B111E;
+  background-color: #000000;
 }
 
 /* Links */

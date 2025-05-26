@@ -1,7 +1,7 @@
 /* Barra de navegación */
 .navbar {
-  background-color:white;
-  color: #1b1b1b;
+  background-color: white;
+  color: #9B111E;
   padding: 1rem 2rem;
   font-family: 'Inter', sans-serif;
   display: flex;
@@ -56,7 +56,7 @@
 .navbar-right button {
   background: none;
   border: 1px solid white;
-  color: black;
+  color: #9B111E;
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   cursor: pointer;
@@ -79,11 +79,12 @@ body {
 /* Contenedor principal */
 .explorar-container {
   padding: 2rem;
-  background-color: #f5f5f5;
+  /*background: linear-gradient(to top, #2C0B0E, #9B111E);*/
+  /*background: linear-gradient(to top, #e0e0e0, #f7f7f7);*/
   min-height: 100vh;
   font-family:  'Inter', sans-serif;
   color: #333;
-  border-radius: 6px;
+  /*border-radius: 6px;*/
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -91,7 +92,7 @@ body {
 .explorar-container h2 {
   text-align: center;
   margin-bottom: 2rem;
-  color: #444;
+  color: #000000;
   font-weight: 600;
 }
 
@@ -117,7 +118,7 @@ body {
 
 .portafolio-card h3 {
   margin-bottom: 0.5rem;
-  color: #222;
+  color: #000000;
   font-size: 1.25rem;
 }
 

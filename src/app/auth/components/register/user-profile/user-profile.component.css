@@ -1,7 +1,7 @@
 /* Barra de navegación */
 .navbar {
-  background-color:white;
-  color: #1b1b1b;
+  background-color: white;
+  color: #9B111E;
   padding: 1rem 2rem;
   font-family: 'Inter', sans-serif;
   display: flex;
@@ -56,7 +56,7 @@
 .navbar-right button {
   background: none;
   border: 1px solid white;
-  color: black;
+  color: #9B111E;
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   cursor: pointer;
@@ -157,11 +157,11 @@ body {
 }
 
 .profile-buttons button {
-  background-color: #1b1b1b;
-  color: white;
+  background-color: white;
+  color: #9B111E;
   padding: 0.7rem 1.2rem;
   border: none;
-  border-radius: 999px;
+  border-radius: 6px;
   font-size: 0.9rem;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -170,6 +170,8 @@ body {
 
 .profile-buttons button:hover {
   background-color: #9B111E;
+  color: white;
+
 
 }
 .portfolio-card {
@@ -224,14 +226,14 @@ body {
   padding: 0.4rem 0.8rem;
   border: none;
   border-radius: 6px;
-  background-color: darkred;
-  color: white;
+  color: #9B111E;
   width: 90px;
   cursor: pointer;
 }
 
 .portfolio-actions button:hover {
-  background-color: #000000;
+
+  color: #000000;
 
 }
 
