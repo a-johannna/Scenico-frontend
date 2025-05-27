@@ -3,5 +3,5 @@ export interface LoginResponseDTO {
   type: string;
   userId: number;
   username: string;
-  roles: string;
+  typeUser: string;
 }

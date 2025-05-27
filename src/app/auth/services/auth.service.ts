@@ -18,7 +18,7 @@ export class AuthService {
 
   login(credentials: LoginRequestDTO): Observable<LoginResponseDTO> { // Usa la interfaz aquí
     return this.http.post<LoginResponseDTO>(`${this.apiUrl}/login`, credentials).pipe(
-    retry(5),
+      retry(5),
       catchError(this.handleError));
   }
 
@@ -72,24 +72,24 @@ export class AuthService {
 
 
 
-    resetPassword(email: string, newPassword: string): Observable<any> {
-      return this.http.post('/api/auth/reset-password', { email, newPassword }).pipe(
-        catchError((error: HttpErrorResponse) => {
-          // Manejo de errores del backend
-          let errorMessage = 'Error desconocido';
-          if (error.error instanceof ErrorEvent) {
-            // Error del cliente
-            errorMessage = `Error: ${error.error.message}`;
-          } else {
-            // Error del backend
-            errorMessage = `Código de error: ${error.status}\nMensaje: ${error.error?.message || error.message}`;
-          }
+  resetPassword(email: string, newPassword: string): Observable<any> {
+    return this.http.post('/api/auth/reset-password', { email, newPassword }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // Manejo de errores del backend
+        let errorMessage = 'Error desconocido';
+        if (error.error instanceof ErrorEvent) {
+          // Error del cliente
+          errorMessage = `Error: ${error.error.message}`;
+        } else {
+          // Error del backend
+          errorMessage = `Código de error: ${error.status}\nMensaje: ${error.error?.message || error.message}`;
+        }
 
-          console.error(errorMessage);
-          return throwError(() => new Error(errorMessage)); // Propaga el error para que el componente lo maneje.
-        })
-      );
-    }
+        console.error(errorMessage);
+        return throwError(() => new Error(errorMessage)); // Propaga el error para que el componente lo maneje.
+      })
+    );
+  }
 
   getCurrentUserUuid(): string | null {
     const token = localStorage.getItem('token');
@@ -113,6 +113,5 @@ export class AuthService {
 
   }
 }
-
 
 

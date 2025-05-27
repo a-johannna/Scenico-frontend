@@ -10,7 +10,7 @@
 <div class="navbar">
 
 
-    <div class="navbar-title">Scénico</div>
+  <div class="navbar-title">Scénico</div>
 
   <div class="navbar-center">
     <input type="text" placeholder="Buscar..." class="navbar-search" />
@@ -48,7 +48,7 @@
     </div>
     <br>
     <br>
-<hr>
+    <hr>
     <div class="profile-buttons center-align">
       <button mat-raised-button color="primary" (click)="abrirFormularioPortafolio()">
         Añadir Portafolio
@@ -62,19 +62,19 @@
     <div *ngIf="portafolios.length > 0; else sinPortafolios">
       <div *ngFor="let p of portafolios" class="portfolio-card">
         <div class="portfolio-content">
-        <div class="portfolio-info">
-        <h4>{{ p.titulo }}</h4>
-        <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
-        <p><strong>Archivo:</strong> <a [href]="p.urlArchivo" target="_blank">{{ p.urlArchivo }}</a></p>
-        <p><strong>Imagen:</strong> <a [href]="p.urlImagen" target="_blank">{{ p.urlImagen }}</a></p>
-        <p><strong>Descripción Imagen:</strong> {{ p.descripcionImagen }}</p>
-        <p><strong>Etiquetas:</strong> {{ p.etiquetas }}</p>
-      </div>
-        <div class="portfolio-actions">
-          <button (click)="editarPortafolio(p)">Editar</button>
-          <button (click)="eliminarPortafolio(p.idPortafolio)">Eliminar</button>
+          <div class="portfolio-info">
+            <h4>{{ p.titulo }}</h4>
+            <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
+            <p><strong>Archivo:</strong> <a [href]="p.urlArchivo" target="_blank">{{ p.urlArchivo }}</a></p>
+            <p><strong>Imagen:</strong> <a [href]="p.urlImagen" target="_blank">{{ p.urlImagen }}</a></p>
+            <p><strong>Descripción Imagen:</strong> {{ p.descripcionImagen }}</p>
+            <p><strong>Etiquetas:</strong> {{ p.etiquetas }}</p>
+          </div>
+          <div class="portfolio-actions">
+            <button (click)="editarPortafolio(p)">Editar</button>
+            <button (click)="eliminarPortafolio(p.idPortafolio)">Eliminar</button>
 
-      </div>
+          </div>
         </div>
       </div>
 

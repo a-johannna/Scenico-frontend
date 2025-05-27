@@ -6,6 +6,7 @@ import {UserProfileComponent} from './auth/components/register/user-profile/user
 import {ExplorarPortafoliosComponent} from './auth/components/explorar-portafolios/explorar-portafolios.component';
 
 
+
 export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent }, // Ruta para el login
@@ -13,7 +14,6 @@ export const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'uuid/:uuid', component: UserProfileComponent },
   { path: 'explorar', component: ExplorarPortafoliosComponent }
-
 
 
 ];
