@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
 import { Usuario } from '../../../models/usuario';
 import { UserService } from '../../../services/UserService';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
@@ -8,6 +7,10 @@ import {PortafolioService} from "../../../services/PorfafolioService";
 import {ProfileEditDialogComponent} from "../../profile-edit-dialog/profile-edit-dialog.component";
 import { MatDialog } from '@angular/material/dialog';
 import {AdvancedSettingsDialogComponent} from "../../advanced-settings-dialog/advanced-settings-dialog.component";
+import {MatButton} from "@angular/material/button";
+import {ActivatedRoute, Router} from "@angular/router";
+import {PortafolioCreateDialogComponent} from "../../portafolio-create-dialog/portafolio-create-dialog.component";
+import {PortafolioEditDialogComponent} from '../../portafolio-edit-dialog/portafolio-edit-dialog.component';
 
 
 
@@ -17,7 +20,8 @@ import {AdvancedSettingsDialogComponent} from "../../advanced-settings-dialog/ad
   imports: [
     NgIf,
     NgOptimizedImage,
-    NgForOf
+    NgForOf,
+    MatButton
   ],
   styleUrls: ['./user-profile.component.css']
 })
@@ -30,7 +34,8 @@ export class UserProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private portafolioService: PortafolioService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -69,5 +74,64 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+
+  abrirFormularioPortafolio(): void {
+    const dialogRef = this.dialog.open(PortafolioCreateDialogComponent, {
+      width: '400px',
+      data: this.user?.username
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.ngOnInit(); // recargar lista de portafolios
+      }
+    });
+  }
+
+  editarPortafolio(portafolio: Portafolio) {
+    const dialogRef = this.dialog.open(PortafolioEditDialogComponent, {
+      width: '500px',
+      data: portafolio
+    });
+
+    dialogRef.afterClosed().subscribe((result: Portafolio | undefined) => {
+      if (result) {
+        this.portafolioService.updatePortfolio(result.idPortafolio, result).subscribe({
+          next: () => {
+            console.log('Actualizado correctamente');
+            this.cargarPortafolios(); // o refresca la vista
+          },
+          error: err => console.error('Error actualizando:', err)
+        });
+      }
+    });
+  }
+
+  eliminarPortafolio(id: number): void {
+    if (confirm('¿Deseas eliminar este portafolio?')) {
+      this.portafolioService.deletePortafolio(id).subscribe({
+        next: () => {
+          // Elimina el portafolio del arreglo local tras éxito
+          this.portafolios = this.portafolios.filter(p => p.idPortafolio !== id);
+          console.log(`Portafolio con id ${id} eliminado.`);
+        },
+        error: err => {
+          console.error('Error al eliminar el portafolio:', err);
+          alert('Ocurrió un error al intentar eliminar el portafolio.');
+        }
+      });
+    }
+  }
+
+  cargarPortafolios(): void {
+    this.portafolioService.getPortafoliosByUserUuid(this.uuid!).subscribe({
+      next: data => this.portafolios = data,
+      error: err => console.error('Error al cargar portafolios:', err)
+    });
+  }
+
+  explorarPortafolios(): void {
+    this.router.navigate(['/explorar']);
+  }
 
 }

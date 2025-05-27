@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Nuevo Portafolio</h2>
+
+<mat-dialog-content>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Título</mat-label>
+    <input matInput [(ngModel)]="data.titulo">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput [(ngModel)]="data.descripcion"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo de archivo</mat-label>
+    <mat-select [(ngModel)]="data.tipoArchivo">
+      <mat-option value="VIDEO">Video</mat-option>
+      <mat-option value="AUDIO">Audio</mat-option>
+      <mat-option value="IMAGE">Imagen</mat-option>
+      <mat-option value="DOCUMENT">Documento</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>URL del archivo</mat-label>
+    <input matInput [(ngModel)]="data.urlArchivo">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>URL de la imagen</mat-label>
+    <input matInput [(ngModel)]="data.urlImagen">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción de la imagen</mat-label>
+    <textarea matInput [(ngModel)]="data.descripcionImagen"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Etiquetas (separadas por comas)</mat-label>
+    <input matInput [(ngModel)]="etiquetasTexto">
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button color="primary" (click)="onCreate()">Crear</button>
+</mat-dialog-actions>

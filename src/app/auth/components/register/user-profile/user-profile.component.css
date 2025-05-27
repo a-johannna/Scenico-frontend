@@ -1,16 +1,107 @@
-.profile-container {
-  max-width: 600px;
-  margin: auto;
-  padding: 1.5rem;
-  background-color: #f5f5f5;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Barra de navegación */
+.navbar {
+  background-color: white;
+  color: #9B111E;
+  padding: 1rem 2rem;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
+
+.navbar-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-search {
+  width: 100%;
+  max-width: 320px;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: none;     /* opcional*/
+  font-size: 0.95rem;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.navbar-search::placeholder {
+  color: #999;
+}
+.navbar-left{
+  justify-content: flex-start;
+}
+
+.navbar-right {
+  justify-content: flex-end;
+}
+
+.navbar-right button {
+  background: none;
+  border: 1px solid white;
+  color: #9B111E;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.navbar-right button:hover {
+  background-color: white;
+  color: #1b1b1b;
+}
+
+
+/* Fondo general */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to top, #e0e0e0, #f7f7f7);
+  min-height: 100vh;
+}
+
+/* Contenedor principal del perfil */
+.profile-wrapper {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Contenedor de secciones */
+.profile-container {
+  max-width: 700px;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabecera del perfil */
 .profile-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .profile-image {
@@ -34,37 +125,118 @@
 
 .profile-info h2 {
   margin: 0;
+  font-size: 1.8rem;
 }
 
 .profile-info h4 {
   margin: 0;
   color: #666;
+  font-weight: 500;
 }
 
 .profile-description {
   margin-top: 1rem;
+  font-size: 1rem;
+  color: #333;
 }
 
+/* Botones */
 .profile-buttons {
-  margin-top: 20px;
+  margin-top: 1.5rem;
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
+}
+
+.profile-buttons.right-align {
+  justify-content: flex-end;
+}
+
+.center-align {
+  justify-content: center;
 }
 
 .profile-buttons button {
-  background-color: #007aff;
-  color: white;
-  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
-  padding: 10px 18px;
+  background-color: white;
+  color: #9B111E;
+  padding: 0.7rem 1.2rem;
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease;
 }
 
 .profile-buttons button:hover {
-  background-color: #005fcc;
-  transform: translateY(-1px);
+  background-color: #9B111E;
+  color: white;
+
+
+}
+.portfolio-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.portfolio-card h4 {
+  margin-top: 0;
+  color: #333;
+}
+
+.portfolio-card p {
+  margin: 0.3rem 0;
+}
+
+
+.portfolio-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.portfolio-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+.portfolio-info {
+  flex: 1;
+}
+
+.portfolio-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.portfolio-actions button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  color: #9B111E;
+  width: 90px;
+  cursor: pointer;
+}
+
+.portfolio-actions button:hover {
+
+  color: #000000;
+
+}
+
+.portfolio-actions .danger {
+  background-color: #dc3545;
 }

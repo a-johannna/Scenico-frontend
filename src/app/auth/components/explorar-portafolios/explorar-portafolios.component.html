@@ -1,0 +1,39 @@
+
+<div class="navbar">
+  <div class="navbar-title">Scénico</div>
+
+  <div class="navbar-center">
+    <input type="text" placeholder="Buscar..." class="navbar-search" />
+  </div>
+
+  <div class="navbar-right">
+    <button (click)="volver()">Mi cuenta</button>
+    <button (click)="salir()">Salir</button>
+  </div>
+</div>
+
+<div class="explorar-container">
+
+
+  <h2>Explorar Portafolios</h2>
+
+  <div *ngIf="portafolios.length > 0; else noPortafolios" class="portafolio-list">
+    <div *ngFor="let p of portafolios" class="portafolio-card">
+      <h3>{{ p.titulo }}</h3>
+      <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
+      <p><strong>Archivo:</strong>
+        <a [href]="p.urlArchivo" target="_blank">{{ p.urlArchivo }}</a>
+      </p>
+      <div *ngIf="p.urlImagen">
+        <p><strong>Imagen:</strong></p>
+        <img [src]="p.urlImagen" alt="Imagen del portafolio" width="100%" style="border-radius: 8px; margin-top: 0.5rem;">
+      </div>
+      <p><strong>Descripción Imagen:</strong> {{ p.descripcionImagen }}</p>
+      <p class="etiquetas"><strong>Etiquetas:</strong> {{ p.etiquetas?.join(', ') }}</p>
+    </div>
+  </div>
+
+  <ng-template #noPortafolios>
+    <p style="text-align: center; margin-top: 2rem;">No hay portafolios disponibles.</p>
+  </ng-template>
+</div>
