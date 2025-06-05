@@ -1,0 +1,53 @@
+<h2 mat-dialog-title>Editar Oportunidad</h2>
+
+<mat-dialog-content>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Título</mat-label>
+    <input matInput [(ngModel)]="data.titulo" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput [(ngModel)]="data.descripcion"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Categoría</mat-label>
+    <input matInput [(ngModel)]="data.categoria" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Requisitos</mat-label>
+    <textarea matInput [(ngModel)]="data.requisitos"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Ubicación</mat-label>
+    <input matInput [(ngModel)]="data.ubicacion" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Estado</mat-label>
+    <mat-select [(ngModel)]="data.estado">
+      <mat-option value="ABIERTA">Abierta</mat-option>
+      <mat-option value="CERRADA">Cerrada</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!--<mat-form-field appearance="fill">
+    <mat-label>Fecha de Publicación</mat-label>
+    <input matInput type="date" [(ngModel)]="data.fecha" />
+  </mat-form-field>
+
+ <mat-form-field appearance="fill">
+    <mat-label>Fecha de Cierre</mat-label>
+    <input matInput type="date" [(ngModel)]="data.fechaCierre" />
+  </mat-form-field>-->
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button color="primary" (click)="onSave()">Guardar</button>
+</mat-dialog-actions>

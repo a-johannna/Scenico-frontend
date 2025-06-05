@@ -43,7 +43,7 @@ export class userRegisterComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      rol: [RolUsuario.USUARIO_NORMAL, Validators.required],
+      rol: [RolUsuario.USER, Validators.required],
       location: [''],
       description: [''],
       photoProfile: ['']
