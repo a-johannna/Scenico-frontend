@@ -1,59 +1,64 @@
-# Frontend
+# 🎨 Scénico - Frontend Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+Este repositorio contiene el **frontend de Scénico**, una plataforma web enfocada en la visibilización de artistas emergentes y la conexión con agentes del sector cultural. La aplicación está desarrollada como parte de un Trabajo de Fin de Grado (TFG) del ciclo de Desarrollo de Aplicaciones Multiplataforma (DAM).
 
-## Development server
+El frontend está construido como una **SPA (Single Page Application)** utilizando **Angular**, e interactúa con un backend REST para gestionar usuarios, portafolios, oportunidades y postulaciones.
 
-To start a local development server, run:
+---
 
-```bash
+## 🚀 Funcionalidades principales
+
+- Registro e inicio de sesión con control de roles (artista, empresa, espectador, admin)
+- Creación y edición de portafolios digitales
+- Publicación y visualización de oportunidades laborales o colaborativas
+- Postulación directa desde perfiles de artistas
+- Filtros dinámicos por categoría, ubicación y estado
+- Visualización pública de oportunidades sin iniciar sesión
+- Autenticación y protección de rutas mediante JWT
+
+---
+
+## 🧰 Tecnologías utilizadas
+
+- **Angular 17**
+- **TypeScript**
+- **Angular Material / Bootstrap**
+- **RxJS**
+- **HTML5 / CSS**
+- Comunicación con API REST vía `HttpClientModule`
+
+
+---
+
+## 🔐 Seguridad
+
+- Autenticación basada en **JWT**
+- Token almacenado en el navegador tras login
+- Rutas protegidas
+- Roles definidos desde el backend (ARTIST, ENTERPRISE, ADMIN, USER)
+
+---
+
+## ⚙️ Configuración del entorno
+
+Edita `src/environments/environment.ts` para apuntar a tu backend:
+
+```ts
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080/api/v1/users/'
+};
+
+# Clonar el repositorio
+git clone https://github.com/a-johannna/frontend.git
+cd frontend
+
+# Instalar dependencias
+npm install
+
+# Ejecutar el servidor en modo desarrollo
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+# Accede desde:
+http://localhost:4200/
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
