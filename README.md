@@ -50,8 +50,8 @@ export const environment = {
 };
 
 # Clonar el repositorio
-git clone https://github.com/a-johannna/frontend.git
-cd frontend
+git clone https://github.com/a-johannna/Scenico-frontend.git
+cd scenico-frontend
 
 # Instalar dependencias
 npm install
