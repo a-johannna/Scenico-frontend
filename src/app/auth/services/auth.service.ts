@@ -16,7 +16,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: LoginRequestDTO): Observable<LoginResponseDTO> { // Usa la interfaz aquí
+  login(credentials: LoginRequestDTO): Observable<LoginResponseDTO> {
     return this.http.post<LoginResponseDTO>(`${this.apiUrl}/login`, credentials).pipe(
       retry(5),
       catchError(this.handleError));
@@ -106,10 +106,10 @@ export class AuthService {
 
 
   logout(): void {
-    // Eliminar token y cualquier otro dato del usuario
+
     localStorage.removeItem('token');
-    localStorage.removeItem('user'); // si guardas info extra
-    localStorage.removeItem('idUsuario'); // si lo estás usando
+    localStorage.removeItem('user');
+    localStorage.removeItem('idUsuario');
 
   }
 }

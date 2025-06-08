@@ -1,14 +1,14 @@
 import {Usuario} from './usuario';
 
 export interface Oportunidades {
-  id: number; // o string si es UUID
+  id: number;
   titulo: string;
   descripcion: string;
   categoria: string;
   requisitos: string;
   ubicacion: string;
   estado: 'ABIERTA' | 'CERRADA' | 'PENDIENTE';
-  fechaPublicacion: string; // ISO date
-  fechaCierre: string; // ISO date
-  usuarioEmpresa: Usuario; // relación con empresa
+  fechaPublicacion: string;
+  fechaCierre: string;
+  usuarioEmpresa: Usuario;
 }

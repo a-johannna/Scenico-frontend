@@ -1,9 +1,9 @@
 
 export interface Usuario {
-  uuid?: string; // Es opcional porque puede ser generado por el backend
+  uuid?: string;
   username: string;
   email: string;
-  password?: string; // Opcional para evitar mostrarla innecesariamente
+  password?: string;
   firstName: string;
   lastName: string;
   location?: string;
@@ -11,5 +11,5 @@ export interface Usuario {
   photoProfile?: string;
   rol: 'ARTISTA' | 'EMPRESA' | 'ADMIN' | 'USUARIO_NORMAL';
   isVerified?: boolean;
-  createdAt?: string; // O Date si quieres manejar fechas directamente
+  createdAt?: string;
 }

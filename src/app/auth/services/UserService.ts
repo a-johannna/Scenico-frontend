@@ -1,4 +1,3 @@
-//<llm-snippet-file>src/app/services/UserService.ts</llm-snippet-file>
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -15,31 +14,51 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-// Obtener todos los usuarios
+  /**
+   * Obtiene todos usuarios
+   */
   getAllUsers(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.apiUrl}/listar`);
   }
 
-  // Obtener un usuario por UUID
+  /**
+   * Obtener todos los usuarios por UUID
+   * @param uuid identificador único público
+   */
   getUserByUuid(uuid: string): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.apiUrl}/uuid/${uuid}`);
   }
 
-  // Crear un nuevo usuario
+  /**
+   * Crear usuarios
+   * @param usuario
+   */
   createUser(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(`${this.apiUrl}/crear`, usuario);
   }
 
-  // Actualizar usuario existente por UUID
+  /**
+   *  Actualizar usuario existente por UUID
+   * @param uuid
+   * @param usuario
+   */
+
   updateUser(uuid: string, usuario: Usuario): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.apiUrl}/uuid/${uuid}`, usuario);
   }
 
-  // Eliminar usuario por UUID
+  /**
+   * Eliminar usuario por UUID
+   * @param uuid
+   */
   deleteUser(uuid: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/uuid/${uuid}`);
   }
 
+  /**
+   *
+   * @param formData
+   */
   uploadPhoto(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/upload-photo`, formData);
   }
