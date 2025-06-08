@@ -86,7 +86,7 @@ export class AuthService {
         }
 
         console.error(errorMessage);
-        return throwError(() => new Error(errorMessage)); // Propaga el error para que el componente lo maneje.
+        return throwError(() => new Error(errorMessage));
       })
     );
   }
