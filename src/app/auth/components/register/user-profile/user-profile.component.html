@@ -17,7 +17,8 @@
   </div>
 
   <div class="navbar-right">
-    <button (click)="explorarPortafolios()">Home</button>
+    <button (click)="explorarPortafolios()">Explorar</button>
+    <button>Castings</button>
 
     <button (click)="openEditDialog()">Editar Perfil</button>
     <button (click)="openAdvancedSettings()">Salir</button>
@@ -53,6 +54,12 @@
       <button mat-raised-button color="primary" (click)="abrirFormularioPortafolio()">
         Añadir Portafolio
       </button>
+      <button
+        *ngIf="user?.typeUser === 'ENTERPRISE'"
+        mat-raised-button
+        color="primary">
+        Añadir Casting
+      </button>
     </div>
   </div>
 
@@ -85,6 +92,36 @@
       <p>Este usuario aún no ha creado ningún portafolio.</p>
     </ng-template>
   </div>
+
+  <div *ngIf="user && user.typeUser === 'ENTERPRISE'" class="profile-container">
+    <h3>Oportunidades creadas</h3>
+
+    <div *ngIf="oportunidades.length > 0; else sinOportunidades">
+      <div *ngFor="let o of oportunidades" class="portfolio-card">
+        <div class="portfolio-content">
+          <div class="portfolio-info">
+            <h4>{{ o.titulo }}</h4>
+            <p><strong>Descripción:</strong> {{ o.descripcion }}</p>
+            <p><strong>Categoría:</strong> {{ o.categoria }}</p>
+            <p><strong>Requisitos:</strong> {{ o.requisitos }}</p>
+            <p><strong>Ubicación:</strong> {{ o.ubicacion }}</p>
+           <!-- <p><strong>Fecha:</strong> {{ o.fecha | date:'short' }}</p>
+            <p><strong>Fecha Cierre:</strong> {{ o.fechaCierre | date:'short' }}</p>-->
+            <p><strong>Estado:</strong> {{ o.estado }}</p>
+          </div>
+          <div class="portfolio-actions">
+            <button (click)="editarOportunidad(o)">Editar</button>
+            <button (click)="eliminarOportunidad(o.id)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #sinOportunidades>
+      <p>Este usuario aún no ha creado ninguna oportunidad.</p>
+    </ng-template>
+  </div>
+
 
 
 </div>

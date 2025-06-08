@@ -11,9 +11,9 @@ export interface CreateUserDTO {
 }
 
 export enum RolUsuario {
-  USUARIO_NORMAL = 'USUARIO_NORMAL',
-  ARTISTA = 'ARTISTA',
-  EMPRESA = 'EMPRESA',
+  USER = 'USER',
+  ARTIST = 'ARTIST',
+  ENTERPRISE = 'ENTERPRISE',
   ADMIN = 'ADMIN'
 }
 
@@ -23,7 +23,7 @@ const newUser: CreateUserDTO = {
   lastName: '',
   email: '',
   password: '',
-  rol: RolUsuario.USUARIO_NORMAL,
+  rol: RolUsuario.USER,
   location: '',
   description: '',
   photoProfile: ''

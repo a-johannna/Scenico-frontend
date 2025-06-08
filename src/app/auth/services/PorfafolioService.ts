@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Portafolio } from '../models/portafolio';
 import {CreatePortafolioDto} from '../components/register/user-profile/dtos/CreatePortafolioDto';
 import {Usuario} from '../models/usuario';
+import {Oportunidades} from '../models/oportunidades';
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +73,7 @@ export class PortafolioService {
   getAllPortafolios(): Observable<Portafolio[]> {
     return this.http.get<Portafolio[]>(`${this.apiUrl}/all`);
   }
+
+
 
 }

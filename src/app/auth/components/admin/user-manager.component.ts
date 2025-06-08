@@ -91,7 +91,7 @@ export class userManagerComponent implements OnInit {
       email: '',
       firstName: '',
       lastName: '',
-      rol: 'USUARIO_NORMAL'
+      typeUser: 'USUARIO_NORMAL'
     };
   }
 
