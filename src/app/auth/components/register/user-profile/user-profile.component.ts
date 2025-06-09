@@ -45,7 +45,7 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Obtener UUID desde la URL, si se está navegando con parámetro
+    // Obtener UUID desde la URL, si se está navegando con parámetro (environment)
     this.uuid = this.route.snapshot.paramMap.get('uuid') || '';
 
     if (this.uuid) {
@@ -85,7 +85,7 @@ export class UserProfileComponent implements OnInit {
   openAdvancedSettings(): void {
     this.dialog.open(AdvancedSettingsDialogComponent, {
       width: '400px',
-      data: this.user?.uuid || this.user?.username // asegúrate de pasar el identificador correcto
+      data: this.user?.uuid || this.user?.username //pasa el uuid como identificador
     });
   }
 

@@ -27,7 +27,7 @@ export class ResetPasswordComponent {
     if (this.form.valid) {
       const email = this.form.value.email;
 
-      // Simula petición HTTP
+
       this.message = `Se ha enviado un enlace a ${email} si existe en nuestra base de datos.`;
       this.error = null;
     } else {
