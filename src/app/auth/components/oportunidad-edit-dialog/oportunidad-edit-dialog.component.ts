@@ -44,7 +44,7 @@ export class OportunidadEditDialogComponent implements OnInit {
       ubicacion: [this.data.ubicacion, [Validators.required]],
       estado: [this.data.estado, [Validators.required]],
       // habilitamos edición de fechaCierre si es necesario
-     // fechaCierre: [soloFecha, [Validators.required]]
+      // fechaCierre: [soloFecha, [Validators.required]]
     });
   }
 
@@ -65,7 +65,7 @@ export class OportunidadEditDialogComponent implements OnInit {
       requisitos: this.form.value.requisitos,
       ubicacion: this.form.value.ubicacion,
       estado: this.form.value.estado,
-     // fechaCierre: this.form.value.fechaCierre
+      // fechaCierre: this.form.value.fechaCierre
     };
 
     // Cerramos el diálogo devolviendo el objeto actualizado

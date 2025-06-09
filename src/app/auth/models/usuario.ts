@@ -1,5 +1,6 @@
 
 export interface Usuario {
+  id_user:number;
   uuid?: string;
   username: string;
   email: string;
@@ -9,7 +10,7 @@ export interface Usuario {
   location?: string;
   description?: string;
   photoProfile?: string;
-  rol: 'ARTISTA' | 'EMPRESA' | 'ADMIN' | 'USUARIO_NORMAL';
+  typeUser: 'ADMIN' | 'ARTIST' | 'ENTERPRISE' | 'USER';
   isVerified?: boolean;
   createdAt?: string;
 }

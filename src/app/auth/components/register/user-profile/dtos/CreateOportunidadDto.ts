@@ -5,5 +5,5 @@ export interface CreateOportunidadDto {
   requisitos: string;
   ubicacion: string;
   estado: 'ABIERTA' | 'CERRADA';
-  // No incluimos fecha ni fechaCierre: se asignan automáticamente en el backend
+
 }

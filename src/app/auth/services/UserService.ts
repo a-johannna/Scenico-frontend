@@ -14,51 +14,31 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  /**
-   * Obtiene todos usuarios
-   */
+// Obtener todos los usuarios
   getAllUsers(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.apiUrl}/listar`);
   }
 
-  /**
-   * Obtener todos los usuarios por UUID
-   * @param uuid identificador único público
-   */
+  // Obtener un usuario por UUID
   getUserByUuid(uuid: string): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.apiUrl}/uuid/${uuid}`);
   }
 
-  /**
-   * Crear usuarios
-   * @param usuario
-   */
+  // Crear un nuevo usuario
   createUser(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(`${this.apiUrl}/crear`, usuario);
   }
 
-  /**
-   *  Actualizar usuario existente por UUID
-   * @param uuid
-   * @param usuario
-   */
-
+  // Actualizar usuario existente por UUID
   updateUser(uuid: string, usuario: Usuario): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.apiUrl}/uuid/${uuid}`, usuario);
   }
 
-  /**
-   * Eliminar usuario por UUID
-   * @param uuid
-   */
+  // Eliminar usuario por UUID
   deleteUser(uuid: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/uuid/${uuid}`);
   }
 
-  /**
-   *
-   * @param formData
-   */
   uploadPhoto(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/upload-photo`, formData);
   }

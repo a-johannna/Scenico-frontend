@@ -10,7 +10,7 @@ describe('OportunidadEditDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [OportunidadEditDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(OportunidadEditDialogComponent);
     component = fixture.componentInstance;

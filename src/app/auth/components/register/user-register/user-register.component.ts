@@ -92,14 +92,12 @@ export class userRegisterComponent implements OnInit {
   }
 
 
-
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
       this.selectedImage = input.files[0];
-
+      // si luego quieres subir la imagen, aquí puedes gestionarla
     }
   }
 }
-
 

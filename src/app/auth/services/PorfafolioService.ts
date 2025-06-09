@@ -18,7 +18,6 @@ export class PortafolioService {
 
   /**
    * Obtener portafolios por UUID del usuario
-   * @param uuid
    */
   getPortafoliosByUserUuid(uuid: string): Observable<Portafolio[]> {
     return this.http.get<Portafolio[]>(`${this.apiUrl}/user/uuid/${uuid}`);
@@ -26,7 +25,6 @@ export class PortafolioService {
 
   /**
    * (Opcional) Obtener portafolio individual por ID
-   *
    */
   getPortafolioById(id: number): Observable<Portafolio> {
     return this.http.get<Portafolio>(`${this.apiUrl}/${id}`);

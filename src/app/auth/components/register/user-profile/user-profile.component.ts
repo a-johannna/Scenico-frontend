@@ -54,8 +54,8 @@ export class UserProfileComponent implements OnInit {
           console.log('Usuario recibido en perfil:', data);
           this.user = data;
           if (data.typeUser === 'ENTERPRISE') {
-          this.cargarOportunidades();
-        }
+            this.cargarOportunidades();
+          }
 
         },
         error: err => console.error('Error al cargar perfil de usuario', err)
@@ -200,4 +200,3 @@ export class UserProfileComponent implements OnInit {
   }
 
 }
-
