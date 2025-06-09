@@ -35,7 +35,6 @@ export class OportunidadEditDialogComponent implements OnInit {
 
   ngOnInit(): void {
     //const soloFecha = this.data.fechaCierre.slice(0,10);
-    // Creamos un FormGroup inicializado con los valores actuales de la oportunidad
     this.form = this.fb.group({
       titulo: [this.data.titulo, [Validators.required]],
       descripcion: [this.data.descripcion, [Validators.required]],
@@ -43,7 +42,6 @@ export class OportunidadEditDialogComponent implements OnInit {
       requisitos: [this.data.requisitos, [Validators.required]],
       ubicacion: [this.data.ubicacion, [Validators.required]],
       estado: [this.data.estado, [Validators.required]],
-      // habilitamos edición de fechaCierre si es necesario
       // fechaCierre: [soloFecha, [Validators.required]]
     });
   }
