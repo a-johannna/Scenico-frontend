@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../../models/usuario';
 import { UserService } from '../../../services/UserService';
-import {DatePipe, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {Portafolio} from "../../../models/portafolio";
 import {PortafolioService} from "../../../services/PorfafolioService";
 import {ProfileEditDialogComponent} from "../../profile-edit-dialog/profile-edit-dialog.component";
@@ -25,7 +25,7 @@ import {OportunidadEditDialogComponent} from '../../oportunidad-edit-dialog/opor
     NgOptimizedImage,
     NgForOf,
     MatButton,
-    DatePipe
+
   ],
   styleUrls: ['./user-profile.component.css']
 })

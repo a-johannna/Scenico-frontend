@@ -57,7 +57,7 @@ export class OportunidadEditDialogComponent implements OnInit {
       return;
     }
 
-    // Copiamos los valores actualizados al objeto data
+
     const actualizado: Partial<Oportunidades> = {
       titulo: this.form.value.titulo,
       descripcion: this.form.value.descripcion,
@@ -68,7 +68,7 @@ export class OportunidadEditDialogComponent implements OnInit {
       // fechaCierre: this.form.value.fechaCierre
     };
 
-    // Cerramos el diálogo devolviendo el objeto actualizado
+
     this.dialogRef.close({
       ...this.data,
       ...actualizado

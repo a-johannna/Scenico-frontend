@@ -65,7 +65,7 @@ export class userRegisterComponent implements OnInit {
         this.errorMessages = [];
         this.successMessage =  `¡Usuario ${res.username} registrado correctamente!`;
 
-        // Guardar el token (si viene en la respuesta)
+        // Guardar el token
         if (res.token) {
           localStorage.setItem('token', res.token);
         }
@@ -96,7 +96,7 @@ export class userRegisterComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
       this.selectedImage = input.files[0];
-      // si luego quieres subir la imagen, aquí puedes gestionarla
+
     }
   }
 }

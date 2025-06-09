@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, numberAttribute, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 
 import {NgClass, NgForOf, NgIf} from '@angular/common';
@@ -87,11 +87,12 @@ export class userManagerComponent implements OnInit {
 
   private resetUsuario(): Usuario {
     return {
+      id_user: number,
       username: '',
       email: '',
       firstName: '',
       lastName: '',
-      typeUser: 'USUARIO_NORMAL'
+      typeUser: 'USER'
     };
   }
 
