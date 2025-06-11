@@ -4,6 +4,9 @@ import {userRegisterComponent} from './auth/components/register/user-register/us
 import {ResetPasswordComponent} from './auth/components/reset-password/reset-password.component';
 import {UserProfileComponent} from './auth/components/register/user-profile/user-profile.component';
 import {ExplorarPortafoliosComponent} from './auth/components/explorar-portafolios/explorar-portafolios.component';
+import {
+  ExplorarOportunidadesComponent
+} from './auth/components/explorar-oportunidades/explorar-oportunidades.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -11,7 +14,8 @@ export const routes: Routes = [
   { path: 'register', component: userRegisterComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'uuid/:uuid', component: UserProfileComponent },
-  { path: 'explorar', component: ExplorarPortafoliosComponent }
+  { path: 'explorar', component: ExplorarPortafoliosComponent },
+  { path: 'castings', component: ExplorarOportunidadesComponent}
 
 
 ];

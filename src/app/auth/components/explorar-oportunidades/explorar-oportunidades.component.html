@@ -1,0 +1,37 @@
+
+<div class="navbar">
+  <div class="navbar-title">Scénico</div>
+
+  <div class="navbar-center">
+    <input type="text" placeholder="Buscar..." class="navbar-search" />
+  </div>
+
+  <div class="navbar-right">
+    <button (click)="explorarPortafolios()">Explorar</button>
+    <button (click)="volver()">Mi cuenta</button>
+    <button (click)="salir()">Salir</button>
+  </div>
+</div>
+
+<div class="explorar-container">
+
+
+  <h2>Explorar Castings</h2>
+
+  <div *ngIf="oportunidades.length > 0; else noPortafolios" class="portafolio-list">
+    <div *ngFor="let p of oportunidades" class="portafolio-card">
+      <h3>{{ p.titulo }}</h3>
+      <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
+      <p><strong>Categoría:</strong> {{ p.categoria }}</p>
+      <p><strong>Requisitos:</strong> {{ p.requisitos }}</p>
+      <p><strong>Ubicación:</strong> {{ p.ubicacion }}</p>
+      <!-- <p><strong>Fecha:</strong> {{ o.fecha | date:'short' }}</p>
+       <p><strong>Fecha Cierre:</strong> {{ o.fechaCierre | date:'short' }}</p>-->
+      <p><strong>Estado:</strong> {{ p.estado }}</p>
+    </div>
+  </div>
+
+  <ng-template #noPortafolios>
+    <p style="text-align: center; margin-top: 2rem;">No hay castings disponibles.</p>
+  </ng-template>
+</div>

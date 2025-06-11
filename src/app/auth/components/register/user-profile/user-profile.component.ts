@@ -149,6 +149,10 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['/explorar']);
   }
 
+  explorarOportunidades(): void {
+    this.router.navigate(['/castings']);
+  }
+
   cargarOportunidades(): void {
     this.oportunidadesService.getOportunidadesByEmpresaId(this.uuid!).subscribe({
       next: (data) => {

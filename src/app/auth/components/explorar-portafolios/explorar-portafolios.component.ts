@@ -34,7 +34,7 @@ export class ExplorarPortafoliosComponent implements OnInit {
   protected readonly UserProfileComponent = UserProfileComponent;
 
   volver(): void {
-    const uuid = this.authService.getCurrentUserUuid(); // Asegúrate que esto lo obtenga correctamente
+    const uuid = this.authService.getCurrentUserUuid();
     if (uuid) {
       this.router.navigate([`/uuid/${uuid}`]);
     } else {
@@ -55,5 +55,9 @@ export class ExplorarPortafoliosComponent implements OnInit {
       }
     });
   }
+  explorarOportunidades(): void {
+    this.router.navigate(['/castings']);
+  }
+
 
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Oportunidades } from '../models/oportunidades';
 import { CreateOportunidadDto } from '../components/register/user-profile/dtos/CreateOportunidadDto';
+import {Portafolio} from '../models/portafolio';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,9 @@ export class OportunidadService {
       'Content-Type': 'application/json'
     });
     return this.http.delete(`${this.apiUrl}/${id}`, { headers });
+  }
+
+  getAllOportunidades(): Observable<Oportunidades[]> {
+    return this.http.get<Oportunidades[]>(`${this.apiUrl}/todas/publicas`);
   }
 }
