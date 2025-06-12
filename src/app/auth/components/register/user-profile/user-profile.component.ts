@@ -14,6 +14,7 @@ import {PortafolioEditDialogComponent} from '../../portafolio-edit-dialog/portaf
 import {Oportunidades} from '../../../models/oportunidades';
 import {OportunidadService} from '../../../services/OportunidadesService';
 import {OportunidadEditDialogComponent} from '../../oportunidad-edit-dialog/oportunidad-edit-dialog.component';
+import {OportunidadCreateDialogComponent} from '../../oportunidad-create-dialog/oportunidad-create-dialog.component';
 
 
 
@@ -102,6 +103,22 @@ export class UserProfileComponent implements OnInit {
       }
     });
   }
+
+  abrirFormularioOportunidades(): void {
+    const dialogRef = this.dialog.open(OportunidadCreateDialogComponent, {
+      width: '400px',
+      data: {idEmpresa: this.user?.id_user}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.ngOnInit(); // recargar lista de portafolios
+      }
+    });
+  }
+
+
+
 
   editarPortafolio(portafolio: Portafolio) {
     const dialogRef = this.dialog.open(PortafolioEditDialogComponent, {

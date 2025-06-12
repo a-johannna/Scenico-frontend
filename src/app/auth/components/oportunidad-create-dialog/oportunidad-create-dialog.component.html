@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>Crear Nueva Oportunidad</h1>
+
+<div mat-dialog-content>
+
+  <form [formGroup]="oportunidadForm" (ngSubmit)="onCreate()" id="oportunidad-form">
+
+    <!-- Campo Título -->
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="titulo" placeholder="Ej. Desarrollador Full-Stack">
+    </mat-form-field>
+
+    <!-- Campo Descripción -->
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="descripcion" placeholder="Describe detalladamente la oportunidad..." cdkTextareaAutosize></textarea>
+    </mat-form-field>
+
+    <!-- Campo Categoría -->
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Categoría</mat-label>
+      <input matInput formControlName="categoria" placeholder="Ej. Desarrollo de Software">
+    </mat-form-field>
+
+    <!-- Campo Requisitos -->
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Requisitos</mat-label>
+      <textarea matInput formControlName="requisitos" placeholder="Enumera los conocimientos necesarios..." cdkTextareaAutosize></textarea>
+    </mat-form-field>
+
+    <!-- Campo Estado -->
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Estado de la Oportunidad</mat-label>
+      <mat-select formControlName="estado">
+        <mat-option *ngFor="let estado of estados" [value]="estado">
+          {{ estado }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Campo Ubicación -->
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Ubicación</mat-label>
+      <input matInput formControlName="ubicacion" placeholder="Ej. Remoto, Madrid, Barcelona...">
+    </mat-form-field>
+
+  </form>
+</div>
+
+<!-- Acciones del Diálogo -->
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="onCancel()">Cancelar</button>
+  <button mat-flat-button color="primary" type="submit" form="oportunidad-form" [disabled]="oportunidadForm.invalid">
+    Crear
+  </button>
+</div>

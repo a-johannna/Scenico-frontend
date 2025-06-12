@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Oportunidades } from '../models/oportunidades';
 import { CreateOportunidadDto } from '../components/register/user-profile/dtos/CreateOportunidadDto';
-import {Portafolio} from '../models/portafolio';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +20,13 @@ export class OportunidadService {
   }
 
   /** Crear nueva oportunidad */
-  createOportunidad(idEmpresa: number, data: CreateOportunidadDto): Observable<Oportunidades> {
+  createOportunidad( data: CreateOportunidadDto): Observable<Oportunidades> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
-    return this.http.post<Oportunidades>(`${this.apiUrl}/${idEmpresa}`, data, { headers });
+    return this.http.post<Oportunidades>(`${this.apiUrl}`, data, { headers });
   }
 
   /** Actualizar una oportunidad existente */
