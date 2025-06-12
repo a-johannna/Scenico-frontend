@@ -19,7 +19,7 @@ import {Usuario} from '../../models/usuario';
 
 export enum EstadoOportunidad {
   ABIERTO = 'ABIERTO',
-  CERRADA = 'CERRADA'
+  CERRADO = 'CERRADO'
 }
 
 @Component({

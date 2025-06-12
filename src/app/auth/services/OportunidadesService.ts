@@ -30,13 +30,13 @@ export class OportunidadService {
   }
 
   /** Actualizar una oportunidad existente */
-  updateOportunidad(id: number, oportunidades: Oportunidades): Observable<Oportunidades> {
+  updateOportunidad(id: number, dto: CreateOportunidadDto): Observable<Oportunidades> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
-    return this.http.put<Oportunidades>(`${this.apiUrl}/idOportunidad/${id}`, oportunidades, { headers });
+    return this.http.put<Oportunidades>(`${this.apiUrl}/idOportunidad/${id}`, dto, { headers });
   }
 
   /** Eliminar una oportunidad */

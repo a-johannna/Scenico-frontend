@@ -46,7 +46,7 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Obtener UUID desde la URL, si se está navegando con parámetro (environment)
+
     this.uuid = this.route.snapshot.paramMap.get('uuid') || '';
 
     if (this.uuid) {
@@ -83,6 +83,8 @@ export class UserProfileComponent implements OnInit {
       }
     });
   }
+
+
   openAdvancedSettings(): void {
     this.dialog.open(AdvancedSettingsDialogComponent, {
       width: '400px',
@@ -188,16 +190,17 @@ export class UserProfileComponent implements OnInit {
       data: oportunidad
     });
 
-    dialogRef.afterClosed().subscribe((result: Oportunidades | undefined) => {
-      if (!result) {
+    dialogRef.afterClosed().subscribe((updated: Oportunidades) => {
+      if (!updated) {
         return;
       }
 
       // Llamamos al servicio pasando el UUID de la oportunidad actualizada
-      this.oportunidadesService.updateOportunidad(result.id, result).subscribe({
+      this.oportunidadesService.updateOportunidad(updated.id, updated).subscribe({
         next: () => {
           console.log('Oportunidad actualizada correctamente');
-          this.cargarOportunidades(); // refrescamos la lista tras la actualización
+          this.oportunidades = this.oportunidades.map(o =>
+            o.id === updated.id ? updated : o);
         },
         error: (err) => console.error('Error actualizando oportunidad:', err)
       });

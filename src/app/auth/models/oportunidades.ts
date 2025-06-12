@@ -7,7 +7,7 @@ export interface Oportunidades {
   categoria: string;
   requisitos: string;
   ubicacion: string;
-  estado: 'ABIERTO' | 'CERRADA';
+  estado: 'ABIERTO' | 'CERRADO';
   //fecha: string;
   //fechaCierre: string;
   usuarioEmpresa: Usuario;

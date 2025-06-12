@@ -4,6 +4,6 @@ export interface CreateOportunidadDto {
   categoria: string;
   requisitos: string;
   ubicacion: string;
-  estado: 'ABIERTA' | 'CERRADA';
+  estado: 'ABIERTO' | 'CERRADO';
 
 }
