@@ -64,6 +64,7 @@ export class userRegisterComponent implements OnInit {
       next: res => {
         this.errorMessages = [];
         this.successMessage =  `¡Usuario ${res.username} registrado correctamente!`;
+        console.log('Usuario registrado correctamente: ', res);
 
         // Guardar el token
         if (res.token) {
